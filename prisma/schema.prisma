@@ -7,3 +7,94 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+enum Role {
+  STUDENT
+  TUTOR
+}
+
+model User {
+  id                        String            @id
+  name                      String
+  imageUrl                  String            @db.Text
+  email                     String            @db.Text
+  role                      Role?
+  costPerHour               Float?
+  qualifications            Qualification[]
+  subjects                  UsersSubjects[]
+  AvailableTime             AvailableTime[]
+  learningSessionsAsTutor   LearningSession[] @relation("LearningSessionTutor")
+  learningSessionsAsStudent LearningSession[] @relation("LearningSessionStudent")
+  reviewSent                Review[]          @relation("ReviewSender")
+  reviewRecieve             Review[]          @relation("ReviewReceiver")
+}
+
+model Qualification {
+  id                 String @id @default(uuid())
+  qualification_name String
+  description        String
+  imageUrl           String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Subject {
+  id    String          @id @default(uuid())
+  name  String
+  users UsersSubjects[]
+}
+
+model UsersSubjects {
+  userId    String
+  subjectId String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject   Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+  @@id([userId, subjectId])
+  @@index([userId])
+  @@index([subjectId])
+}
+
+model AvailableTime {
+  id              String            @id @default(uuid())
+  weekDay         String
+  startTime       String
+  endTime         String
+  userId          String
+  user            User              @relation(fields: [userId], references: [id])
+  LearningSession LearningSession[]
+
+  @@index([userId])
+}
+
+model LearningSession {
+  id              String        @id @default(uuid())
+  tutorId         String
+  tutor           User          @relation("LearningSessionTutor", fields: [tutorId], references: [id])
+  studentId       String
+  student         User          @relation("LearningSessionStudent", fields: [studentId], references: [id])
+  status          String
+  availableTimeId String
+  availableTime   AvailableTime @relation(fields: [availableTimeId], references: [id])
+
+  @@index([tutorId])
+  @@index([studentId])
+  @@index([availableTimeId])
+}
+
+model Review {
+  id          String   @id @default(uuid())
+  receiverId  String
+  receiver    User     @relation("ReviewReceiver", fields: [receiverId], references: [id])
+  senderId    String
+  sender      User     @relation("ReviewSender", fields: [senderId], references: [id])
+  rating      Int
+  description String
+  dateCreated DateTime @default(now())
+
+  @@index([receiverId])
+  @@index([senderId])
+}
