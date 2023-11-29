@@ -70,6 +70,13 @@ model AvailableTime {
   @@index([userId])
 }
 
+enum SessionStatus {
+  PROCESSING
+  REJECTED 
+  INPROGRESS
+  COMPLETED
+}
+
 model LearningSession {
   id              String        @id @default(uuid())
   tutorId         String

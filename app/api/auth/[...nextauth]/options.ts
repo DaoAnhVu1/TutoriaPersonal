@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { redirect } from 'next/navigation';
 
 export const options: NextAuthOptions = {
   secret: process.env.NEXT_AUTH_SECRET,
