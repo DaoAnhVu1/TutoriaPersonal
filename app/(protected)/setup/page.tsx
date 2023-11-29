@@ -5,7 +5,6 @@ import { db } from "@/lib/db";
 
 const SetUpPage = async () => {
   const session = await getServerSession(options);
-  console.log(session);
   if (!session) {
     return redirect("/");
   }

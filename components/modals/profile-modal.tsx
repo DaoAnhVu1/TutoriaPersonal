@@ -27,8 +27,8 @@ const ProfileModal = () => {
               />
               <AvatarFallback>PRF</AvatarFallback>
             </Avatar>
-            <p>Name: {user?.name}</p>
-            <p>Email: {user?.email}</p>
+            <div>Name: {user?.name}</div>
+            <div>Email: {user?.email}</div>
             <Button onClick={() => signOut()}>Sign out</Button>
           </DialogDescription>
         </DialogHeader>

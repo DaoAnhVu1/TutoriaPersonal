@@ -18,6 +18,7 @@ model User {
   name                      String
   imageUrl                  String            @db.Text
   email                     String            @db.Text
+  description               String?           @db.Text
   role                      Role?
   costPerHour               Float?
   qualifications            Qualification[]
@@ -72,7 +73,7 @@ model AvailableTime {
 
 enum SessionStatus {
   PROCESSING
-  REJECTED 
+  REJECTED
   INPROGRESS
   COMPLETED
 }

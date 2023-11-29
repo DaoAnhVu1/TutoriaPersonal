@@ -1,30 +1,89 @@
 "use client";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "@/components/ui/card";
 import { useState, useEffect } from "react";
 import { BookA, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { useSession } from "next-auth/react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import * as z from "zod";
+
+const formSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  imageUrl: z.string(),
+  email: z.string(),
+  description: z.string().optional(),
+  costPerHour: z.string().optional(),
+  subject: z.string().optional(),
+});
 
 const SetupProfile = () => {
   const [mounted, setMounted] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const [subjects, setSubjects] = useState<any[]>([]);
+  const user = useSession().data?.user;
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      id: user?.id,
+      name: user?.name!,
+      email: user?.email!,
+      imageUrl: user?.image!,
+      description: "",
+      costPerHour: "0",
+      subject: "",
+    },
+  });
 
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values);
+  }
   const handleConfirm = () => {
     if (selectedOption === "tutor") {
       setIsConfirmed(true);
     }
   };
   useEffect(() => {
-    setMounted(true);
+    async function fetchData() {
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_URL}/api/subjects`
+      );
+      setSubjects(data);
+      setMounted(true);
+    }
+    fetchData();
   }, []);
   if (!mounted) {
     return null;
   }
-  const dropIn = {
-    hidden: { x: "-100vw" },
-    visible: { x: "0" },
-    exit: { x: "100vw" },
-  };
+
   return (
     <>
       <div className="h-screen w-full flex items-center justify-center">
@@ -48,8 +107,8 @@ const SetupProfile = () => {
                   <BookA className="w-16 h-16 block" />
                 </div>
                 <div>
-                  <p className="text-xl font-semibold">
-                    I am a student trying to learn new things
+                  <p className="text-xl font-semibold text-center">
+                    I am a student and trying to learn new things
                   </p>
                 </div>
               </div>
@@ -66,7 +125,7 @@ const SetupProfile = () => {
                   <GraduationCap className="w-16 h-16 block" />
                 </div>
                 <div>
-                  <p className="text-xl font-semibold">
+                  <p className="text-xl font-semibold text-center">
                     I am a tutor and I want to share my knowledge
                   </p>
                 </div>
@@ -80,7 +139,84 @@ const SetupProfile = () => {
           </CardContent>
         </Card>
 
-        <Card className={`${isConfirmed ? "" : "hidden"} w-1/2`}></Card>
+        <Card className={`${isConfirmed ? "" : "hidden"} w-1/2`}>
+          <CardHeader>
+            <CardTitle className="text-center text-3xl mb-5">
+              Tell us a little bit about yourself
+            </CardTitle>
+          </CardHeader>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-8 px-10"
+            >
+              <Button type="submit">Submit</Button>
+              {/* <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xl">
+                      Introduce yourself to the students
+                    </FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Type your message here."
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              /> */}
+
+              {/* 
+              <FormField
+                control={form.control}
+                name="costPerHour"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xl">
+                      How much you would like to charge per hour ? (in $)
+                    </FormLabel>
+                    <Input type="number" {...field} />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="subject"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-xl">
+                      Choose one of your specialality (You can modify it later)
+                    </FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a subject" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {subjects.map((subject) => (
+                          <SelectItem value={subject.id} key={subject.id}>
+                            {subject.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              /> */}
+            </form>
+          </Form>
+        </Card>
       </div>
     </>
   );
