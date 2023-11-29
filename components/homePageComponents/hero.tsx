@@ -3,10 +3,11 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Lottie from "lottie-react";
 import mainAnimation from "@/animation/main.json";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useModal } from "@/hooks/use-modal";
 const Hero = () => {
   const { onOpen } = useModal();
+  const user = useSession().data;
   return (
     <div className="hero-container flex flex-col-reverse lg:flex-row py-12 px-10 gap-1">
       <motion.div
@@ -26,7 +27,11 @@ const Hero = () => {
         </p>
         <Button
           className="rounded-full bg-green-600 w-28 mt-5 cursor-pointer"
-          onClick={() => onOpen("signIn")}
+          onClick={() => {
+            if (user == null) {
+              onOpen("signIn");
+            }
+          }}
         >
           Get started
         </Button>

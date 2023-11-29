@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { redirect } from 'next/navigation';
+import { redirect } from "next/navigation";
 
 export const options: NextAuthOptions = {
   secret: process.env.NEXT_AUTH_SECRET,
@@ -35,6 +35,9 @@ export const options: NextAuthOptions = {
       expires.setDate(expires.getDate() + 1);
       session.expires = expires.toISOString();
       return session;
+    },
+    async redirect() {
+      return process.env.NEXTAUTH_URL + "/setup";
     },
   },
 };
