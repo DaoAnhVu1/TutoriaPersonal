@@ -1,18 +1,19 @@
 import { db } from "@/lib/db";
-import { AuthOptions } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
-export const options: AuthOptions = {
+export const options: NextAuthOptions = {
+  secret: process.env.NEXT_AUTH_SECRET,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       profile(profile) {
-        console.log("Google Profile: " + JSON.stringify(profile));
-
         return {
-          ...profile,
           id: profile.sub,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture,
         };
       },
     }),
@@ -20,17 +21,39 @@ export const options: AuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token = { ...user };
+        token.id = user.id;
       }
       return token;
     },
     async session({ session, token }) {
+      if (session?.user) {
+        session.user.id = token.id;
+      }
       const currentDate = new Date();
       const expires = new Date(currentDate);
       expires.setDate(expires.getDate() + 1);
       session.expires = expires.toISOString();
-      const toReturn = { ...session, id: token.sub };
-      return toReturn;
+      return session;
     },
   },
 };
+
+// callbacks: {
+//   async jwt({ token }) {
+//     return token;
+//   },
+//   async session({ session, token }) {
+//     console.log("Session: " + JSON.stringify(session));
+//     console.log();
+//     console.log("Token: " + JSON.stringify(token));
+//     const currentDate = new Date();
+//     const expires = new Date(currentDate);
+//     expires.setDate(expires.getDate() + 1);
+//     session.expires = expires.toISOString();
+//     const toReturn = { ...session, id: token.sub };
+//     return toReturn;
+//   },
+//   async redirect({ url, baseUrl }) {
+//     return process.env.NEXTAUTH_URL + "/setup";
+//   },
+// },
