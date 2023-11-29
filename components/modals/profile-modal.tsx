@@ -19,18 +19,18 @@ const ProfileModal = () => {
       <DialogContent>
         <DialogHeader className="flex justify-center items-center">
           <DialogTitle className="mb-2">Your information</DialogTitle>
-          <DialogDescription className="flex flex-col gap-2 justify-center items-center text-black">
+          <div className="flex flex-col gap-2 justify-center items-center text-black">
             <Avatar className="w-20 h-20">
               <AvatarImage
                 className="object-cover"
-                src={user?.image ?? "https://github.com/shadcn.png"}
+                src={user?.imageUrl ?? "https://github.com/shadcn.png"}
               />
               <AvatarFallback>PRF</AvatarFallback>
             </Avatar>
             <div>Name: {user?.name}</div>
             <div>Email: {user?.email}</div>
             <Button onClick={() => signOut()}>Sign out</Button>
-          </DialogDescription>
+          </div>
         </DialogHeader>
       </DialogContent>
     </Dialog>

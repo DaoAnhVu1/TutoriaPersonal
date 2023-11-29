@@ -3,9 +3,13 @@ import { Button } from "@/components/ui/button";
 import { useModal } from "@/hooks/use-modal";
 import { signIn, useSession } from "next-auth/react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-const Header = () => {
+import { User } from "@prisma/client";
+interface HeaderProps {
+  user?: User | null;
+}
+
+const Header = ({ user }: HeaderProps) => {
   const { onOpen } = useModal();
-  const user = useSession().data?.user;
   return (
     <header className="h-20 flex justify-between p-5">
       <div>
@@ -18,8 +22,8 @@ const Header = () => {
             onClick={() => onOpen("profile", { user })}
           >
             {/* @ts-ignore */}
-            <AvatarImage src={user?.image} />
-            <AvatarFallback>AV</AvatarFallback>
+            <AvatarImage src={user?.imageUrl} />
+            <AvatarFallback>TT</AvatarFallback>
           </Avatar>
         )}
         {!user && (

@@ -32,15 +32,23 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import * as z from "zod";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  imageUrl: z.string(),
-  email: z.string(),
   description: z.string().optional(),
-  costPerHour: z.string().optional(),
-  subject: z.string().optional(),
+  costPerHour: z
+    .string()
+    .refine(
+      (value) => {
+        const parsedValue = parseInt(value);
+        return !isNaN(parsedValue);
+      },
+      {
+        message: "Cost per hour must be a valid integer.",
+      }
+    )
+    .optional(),
+  subject: z.string(),
 });
 
 const SetupProfile = () => {
@@ -49,25 +57,52 @@ const SetupProfile = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [subjects, setSubjects] = useState<any[]>([]);
   const user = useSession().data?.user;
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      id: user?.id,
-      name: user?.name!,
-      email: user?.email!,
-      imageUrl: user?.image!,
       description: "",
       costPerHour: "0",
       subject: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_URL}/api/profiles`,
+      {
+        id: user?.id,
+        name: user?.name,
+        image: user?.image,
+        email: user?.email,
+        role: "tutor",
+        description: values.description,
+        costPerHour: values.costPerHour,
+        subjectId: values.subject,
+      }
+    );
+    console.log(response);
   }
   const handleConfirm = () => {
     if (selectedOption === "tutor") {
       setIsConfirmed(true);
+    } else if (selectedOption === "student") {
+      axios
+        .post(`${process.env.NEXT_PUBLIC_URL}/api/profiles`, {
+          id: user?.id,
+          name: user?.name,
+          image: user?.image,
+          email: user?.email,
+          role: "student",
+        })
+        .then((response) => {
+          console.log(response.data);
+          router.push("/");
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     }
   };
   useEffect(() => {
@@ -150,8 +185,7 @@ const SetupProfile = () => {
               onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-8 px-10"
             >
-              <Button type="submit">Submit</Button>
-              {/* <FormField
+              <FormField
                 control={form.control}
                 name="description"
                 render={({ field }) => (
@@ -168,9 +202,7 @@ const SetupProfile = () => {
                     <FormMessage />
                   </FormItem>
                 )}
-              /> */}
-
-              {/* 
+              />
               <FormField
                 control={form.control}
                 name="costPerHour"
@@ -184,7 +216,6 @@ const SetupProfile = () => {
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="subject"
@@ -213,7 +244,12 @@ const SetupProfile = () => {
                     <FormMessage />
                   </FormItem>
                 )}
-              /> */}
+              />
+              <CardFooter className="flex justify-end">
+                <Button type="submit" className="w-24">
+                  Submit
+                </Button>
+              </CardFooter>
             </form>
           </Form>
         </Card>

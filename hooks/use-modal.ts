@@ -1,16 +1,10 @@
+import { User } from "@prisma/client";
 import { create } from "zustand";
 
 export type ModalType = "signIn" | "profile";
 
-type SessionUser = {
-  name?: string | null | undefined;
-  email?: string | null | undefined;
-  image?: string | null | undefined;
-  role?: string | undefined;
-};
-
 interface ModalData {
-  user?: SessionUser;
+  user?: User;
 }
 
 interface ModalStore {
