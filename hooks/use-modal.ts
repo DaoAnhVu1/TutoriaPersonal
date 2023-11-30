@@ -1,7 +1,11 @@
 import { Subject, User } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType = "signIn" | "profile" | "addSubject";
+export type ModalType =
+  | "signIn"
+  | "profile"
+  | "addSubject"
+  | "addQualification";
 
 interface ModalData {
   user?: User | null;
