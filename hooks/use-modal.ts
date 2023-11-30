@@ -1,10 +1,11 @@
-import { User } from "@prisma/client";
+import { Subject, User } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType = "signIn" | "profile";
+export type ModalType = "signIn" | "profile" | "addSubject";
 
 interface ModalData {
-  user?: User;
+  user?: User | null;
+  allSubjects?: Subject[];
 }
 
 interface ModalStore {

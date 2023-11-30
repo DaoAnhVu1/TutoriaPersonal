@@ -10,7 +10,7 @@ const HomePage = async () => {
   return (
     <div>
       <Header user={current} />
-      <Hero />
+      <Hero user={current} />
       <CardsDisplay />
       <SetApartDisplay />
       <Footer />

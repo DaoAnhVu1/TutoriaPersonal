@@ -8,7 +8,6 @@ const TutorLayout = async ({ children }: { children: React.ReactNode }) => {
   if (current?.role !== "TUTOR") {
     return redirect("/");
   }
-  console.log(current);
   return (
     <div>
       <Header user={current} />

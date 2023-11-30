@@ -4,6 +4,7 @@ import { useModal } from "@/hooks/use-modal";
 import { signIn, useSession } from "next-auth/react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { User } from "@prisma/client";
+import Link from "next/link";
 interface HeaderProps {
   user?: User | null;
 }
@@ -13,7 +14,9 @@ const Header = ({ user }: HeaderProps) => {
   return (
     <header className="h-20 flex justify-between p-5">
       <div>
-        <h1 className="font-bold text-2xl text-green-600 ">Tutoria</h1>
+        <Link href={"/"}>
+          <h1 className="font-bold text-2xl text-green-600 ">Tutoria</h1>
+        </Link>
       </div>
       <div>
         {!!user && (

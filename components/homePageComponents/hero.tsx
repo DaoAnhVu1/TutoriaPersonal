@@ -5,9 +5,15 @@ import Lottie from "lottie-react";
 import mainAnimation from "@/animation/main.json";
 import { signIn, useSession } from "next-auth/react";
 import { useModal } from "@/hooks/use-modal";
-const Hero = () => {
+import { User } from "@prisma/client";
+import { useRouter } from "next/navigation";
+
+interface HeroProps {
+  user?: User | null;
+}
+const Hero = ({ user }: HeroProps) => {
   const { onOpen } = useModal();
-  const user = useSession().data;
+  const router = useRouter();
   return (
     <div className="hero-container flex flex-col-reverse lg:flex-row py-12 px-10 gap-1">
       <motion.div
@@ -30,6 +36,10 @@ const Hero = () => {
           onClick={() => {
             if (user == null) {
               onOpen("signIn");
+            } else if (user.role === "STUDENT") {
+              return router.push("/student");
+            } else if (user.role === "TUTOR") {
+              return router.push("/tutor");
             }
           }}
         >
