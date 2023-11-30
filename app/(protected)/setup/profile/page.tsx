@@ -58,6 +58,7 @@ const SetupProfile = () => {
   const [subjects, setSubjects] = useState<any[]>([]);
   const user = useSession().data?.user;
   const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -66,7 +67,7 @@ const SetupProfile = () => {
       subject: "",
     },
   });
-
+  const isLoading = form.formState.isSubmitting;
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     const response = await axios.post(
@@ -82,7 +83,7 @@ const SetupProfile = () => {
         subjectId: values.subject,
       }
     );
-    console.log(response);
+    router.push("/");
   }
   const handleConfirm = () => {
     if (selectedOption === "tutor") {
@@ -246,7 +247,7 @@ const SetupProfile = () => {
                 )}
               />
               <CardFooter className="flex justify-end">
-                <Button type="submit" className="w-24">
+                <Button disabled={isLoading} type="submit" className="w-24">
                   Submit
                 </Button>
               </CardFooter>

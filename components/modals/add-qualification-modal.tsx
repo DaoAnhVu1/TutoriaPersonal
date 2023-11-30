@@ -26,6 +26,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   qualificationName: z.string().min(5, {
@@ -45,6 +46,7 @@ const AddQualificationModal = () => {
   const [progress, setProgress] = useState(0);
   const { edgestore } = useEdgeStore();
   const modalOpenState = isOpen && type === "addQualification";
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -64,9 +66,9 @@ const AddQualificationModal = () => {
         qualificationDescription: values.qualificationDescription,
       }
     );
-
+    onClose();
     if (response.status === 200) {
-      console.log("hehe");
+      router.refresh();
     }
   };
   const handleClose = () => {

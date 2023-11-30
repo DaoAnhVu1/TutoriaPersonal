@@ -26,6 +26,7 @@ export async function POST(req: Request) {
         },
       });
     } else {
+      console.log(id);
       const user = await db.user.create({
         data: {
           id,

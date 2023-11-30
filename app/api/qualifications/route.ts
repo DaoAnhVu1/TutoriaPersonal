@@ -8,6 +8,7 @@ export async function POST(req: Request) {
       qualificationDescription,
       qualificationImageUrl,
     } = await req.json();
+    
     const qualification = await db.qualification.create({
       data: {
         qualification_name: qualificationName,

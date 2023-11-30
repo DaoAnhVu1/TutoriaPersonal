@@ -68,7 +68,6 @@ const TutorProfilePage = async () => {
             <DisplayQualification user={user} qualifications={qualifications} />
           </div>
           <div className="schedule-container mt-2">
-            <h2 className="w-full font-semibold text-2xl">Schedule</h2>
             <DisplaySchedule />
           </div>
         </div>
