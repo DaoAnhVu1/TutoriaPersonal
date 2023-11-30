@@ -9,11 +9,9 @@ const HomePage = async () => {
   const current = await currentUser();
   return (
     <div>
-      <Header user={current} />
       <Hero user={current} />
       <CardsDisplay />
       <SetApartDisplay />
-      <Footer />
     </div>
   );
 };
