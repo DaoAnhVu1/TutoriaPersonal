@@ -61,7 +61,7 @@ model UsersSubjects {
 
 model AvailableTime {
   id              String            @id @default(uuid())
-  weekDay         String
+  weekDay         Int
   startTime       String
   endTime         String
   userId          String

@@ -4,6 +4,7 @@ import SignInModal from "../modals/sign-in-modal";
 import ProfileModal from "../modals/profile-modal";
 import AddSubjectModal from "../modals/add-subject-modal";
 import AddQualificationModal from "../modals/add-qualification-modal";
+import AddAvailableTimeModal from "../modals/add-available-time";
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -20,6 +21,7 @@ const ModalProvider = () => {
       <ProfileModal />
       <AddSubjectModal />
       <AddQualificationModal />
+      <AddAvailableTimeModal />
     </>
   );
 };

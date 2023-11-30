@@ -56,6 +56,8 @@ const AddQualificationModal = () => {
     },
   });
 
+  const isLoading = form.formState.isSubmitting;
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_URL}/api/qualifications`,
@@ -168,7 +170,11 @@ const AddQualificationModal = () => {
             />
 
             <DialogFooter className="mt-5">
-              <Button type="submit" className="bg-green-600">
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="bg-green-600"
+              >
                 Submit
               </Button>
             </DialogFooter>

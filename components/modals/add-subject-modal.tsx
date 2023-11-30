@@ -45,6 +45,8 @@ const AddSubjectModal = () => {
     },
   });
 
+  const isLoading = form.formState.isSubmitting;
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
     console.log(process.env.NEXT_PUBLIC_URL);
@@ -107,7 +109,7 @@ const AddSubjectModal = () => {
                 )}
               />
               <DialogFooter className="flex items-end">
-                <Button type="submit" className="w-24 bg-green-600">
+                <Button disabled={isLoading} type="submit" className="w-24 bg-green-600">
                   Submit
                 </Button>
               </DialogFooter>

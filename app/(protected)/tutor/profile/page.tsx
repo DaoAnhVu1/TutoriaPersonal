@@ -34,6 +34,17 @@ const TutorProfilePage = async () => {
       userId: user?.id,
     },
   });
+
+  const availableTimes = await db.availableTime.findMany({
+    where: {
+      userId: user?.id,
+    },
+    orderBy: [
+      {
+        weekDay: "asc",
+      },
+    ],
+  });
   return (
     <div className="profile-container px-10">
       <div className="top-section mt-5 flex flex-col md:flex-row">
@@ -68,7 +79,7 @@ const TutorProfilePage = async () => {
             <DisplayQualification user={user} qualifications={qualifications} />
           </div>
           <div className="schedule-container mt-2">
-            <DisplaySchedule />
+            <DisplaySchedule availableTimes={availableTimes} user={user} />
           </div>
         </div>
       </div>

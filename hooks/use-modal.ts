@@ -5,7 +5,8 @@ export type ModalType =
   | "signIn"
   | "profile"
   | "addSubject"
-  | "addQualification";
+  | "addQualification"
+  | "addAvailableTime";
 
 interface ModalData {
   user?: User | null;
