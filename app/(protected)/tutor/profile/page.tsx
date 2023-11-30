@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
 
 import DisplaySubject from "@/components/tutorProfileComponents/display-subject";
-import DisplayQualification from "../../../../components/tutorProfileComponents/display-qualification";
-import DisplaySchedule from "../../../../components/tutorProfileComponents/display-schedule";
+import DisplayQualification from "@/components/tutorProfileComponents/display-qualification";
+import DisplaySchedule from "@/components/tutorProfileComponents/display-schedule";
 
 const TutorProfilePage = async () => {
   const user = await currentUser();
@@ -63,7 +63,7 @@ const TutorProfilePage = async () => {
             Change profile picture
           </Button>
           <h3 className="w-full">{user?.description}</h3>
-          <div className="flex gap-2 items-center flex-wrap">
+          <div className="flex gap-2 w-full items-center justify-start flex-wrap">
             <span>Subjects: </span>
             <DisplaySubject
               subjects={subjects}
@@ -73,7 +73,7 @@ const TutorProfilePage = async () => {
           </div>
         </div>
 
-        <div className="description-container min-h-screen w-full mt-16 md:mt-0  ml-0 md:ml-16 flex flex-col gap-3">
+        <div className="description-container min-h-[800px] w-full mt-16 md:mt-0  ml-0 md:ml-16 flex flex-col gap-3">
           <h2 className="w-full font-semibold text-2xl">Qualification</h2>
           <div className="qualification-container flex justify-center">
             <DisplayQualification user={user} qualifications={qualifications} />
