@@ -5,6 +5,7 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { currentUser } from "../../../../lib/current-user";
 import {
   Table,
   TableCaption,
@@ -22,6 +23,7 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = async ({ params }: ProfilePageProps) => {
+  const current = await currentUser();
   const user = await db.user.findUnique({
     where: {
       id: params.profileId,
