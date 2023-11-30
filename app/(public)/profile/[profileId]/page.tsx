@@ -25,11 +25,12 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
   const user = await db.user.findUnique({
     where: {
       id: params.profileId,
+      role: "TUTOR",
     },
   });
 
   if (!user) {
-    return <>404 not found this id</>;
+    return <>404 not found a tutor with this id</>;
   }
 
   const userSubjects = await db.usersSubjects.findMany({
@@ -66,7 +67,6 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
 
   return (
     <>
-      <Header user={user} />
       <div className="profile-container px-10">
         <div className="top-section mt-5 flex flex-col md:flex-row">
           <div className="avatar-container flex items-center flex-col gap-3">
@@ -156,7 +156,6 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
