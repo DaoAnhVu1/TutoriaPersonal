@@ -1,5 +1,9 @@
-const StudentMainPage = () => {
-  return <div>Student main</div>;
+import { currentUser } from "@/lib/current-user";
+import { Hero } from "@/components/tutorHomePageComponents/hero";
+
+const StudentMainPage = async () => {
+  const current = await currentUser();
+  return <Hero user={current} />;
 };
 
 export default StudentMainPage;

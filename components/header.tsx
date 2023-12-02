@@ -14,9 +14,21 @@ const Header = ({ user }: HeaderProps) => {
   return (
     <header className="h-20 flex justify-between p-5">
       <div>
-        <Link href={"/"}>
-          <h1 className="font-bold text-2xl text-green-600 ">Tutoria</h1>
-        </Link>
+        {!!user && user.role === "STUDENT" && (
+          <Link href={"/student"}>
+            <h1 className="font-bold text-2xl text-green-600 ">Tutoria</h1>
+          </Link>
+        )}
+        {!!user && user.role === "TUTOR" && (
+          <Link href={"/tutor"}>
+            <h1 className="font-bold text-2xl text-green-600 ">Tutoria</h1>
+          </Link>
+        )}
+        {!user && (
+          <Link href={"/"}>
+            <h1 className="font-bold text-2xl text-green-600 ">Tutoria</h1>
+          </Link>
+        )}
       </div>
       <div>
         {!!user && (
