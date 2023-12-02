@@ -51,7 +51,7 @@ const AddSubjectModal = () => {
     console.log(values);
     console.log(process.env.NEXT_PUBLIC_URL);
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_URL}/api/usersubject`,
+      `/api/usersubject`,
       {
         subjectId: values.subjectId,
         userId: user?.id,

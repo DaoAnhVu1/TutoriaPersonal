@@ -60,7 +60,7 @@ const AddQualificationModal = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_URL}/api/qualifications`,
+      `/api/qualifications`,
       {
         userId: data.user?.id,
         qualificationName: values.qualificationName,

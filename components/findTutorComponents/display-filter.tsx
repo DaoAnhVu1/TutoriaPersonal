@@ -19,23 +19,25 @@ const DisplayFilter = ({
   return (
     <>
       <div className="mb-3 w-full">
-        <h3 className="mb-3 sm:text-center md:text-start font-semibold text-lg">
+        <h3 className="mb-3  text-start font-semibold text-lg">
           Search by name
         </h3>
-        <div className="flex w-full max-w-sm items-center space-x-2">
+
+        <div className="w-full flex">
           <Input
-            className="block w-full "
-            type="text"
-            placeholder="Search by name"
-          />
-          <Button className="w-1/6">
-            <Search className="w-full h-full" />
+            className="w-full inline-block"
+            placeholder="Enter name"
+          ></Input>
+          <Button>
+            <Search />
           </Button>
         </div>
       </div>
       <Separator className="w-full mb-3" />
       <div className="flex flex-col gap-2">
-        <h3 className="mb-3 font-semibold text-lg">Filter by Subject</h3>
+        <h3 className="mb-3 text-start font-semibold text-lg">
+          Filter by Subject
+        </h3>
         {subjects.map((subject) => (
           <div key={subject.id}>
             <Checkbox
