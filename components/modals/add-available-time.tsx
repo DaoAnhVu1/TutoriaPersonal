@@ -82,7 +82,7 @@ const AddAvailableTimeModal = () => {
       return;
     }
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_URL}/api/availabletimes`,
+      `/api/availabletimes`,
       {
         ...values,
         userId: user?.id,

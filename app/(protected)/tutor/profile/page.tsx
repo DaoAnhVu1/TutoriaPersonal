@@ -48,7 +48,7 @@ const TutorProfilePage = async () => {
   return (
     <div className="profile-container px-10">
       <div className="top-section mt-5 flex flex-col md:flex-row">
-        <div className="avatar-container flex items-center flex-col gap-3">
+        <div className="avatar-container basis-1/4 flex items-center flex-col gap-3">
           <div className="w-64 h-64 relative">
             <Image
               // @ts-ignore
@@ -73,7 +73,7 @@ const TutorProfilePage = async () => {
           </div>
         </div>
 
-        <div className="description-container min-h-[800px] w-full mt-16 md:mt-0  ml-0 md:ml-16 flex flex-col gap-3">
+        <div className="description-container basis-3/4 min-h-[800px] w-full mt-16 md:mt-0  ml-0 md:ml-16 flex flex-col gap-3">
           <h2 className="w-full font-semibold text-2xl">Qualification</h2>
           <div className="qualification-container flex justify-center">
             <DisplayQualification user={user} qualifications={qualifications} />
