@@ -31,10 +31,10 @@ export const Hero = ({ user }: HeroProps) => {
           <Button
             className="rounded-full bg-black lg:w-28 mt-5 cursor-pointer text-white font-semibold"
             onClick={() => {
-              router.push("student/profile");
+              router.push("student/findtutor");
             }}
           >
-            My Profile
+            Find Tutor
           </Button>
           <Button className="rounded-full bg-green-600 lg:w-28 mt-5 cursor-pointer font-semibold hover:bg-green-500">
             My Schedule
