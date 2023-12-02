@@ -1,5 +1,5 @@
 import { currentUser } from "@/lib/current-user";
-import { Hero } from "@/components/tutorHomePageComponents/hero";
+import { Hero } from "@/components/studentHomePageComponents/hero";
 
 const StudentMainPage = async () => {
   const current = await currentUser();
