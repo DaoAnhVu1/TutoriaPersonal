@@ -3,10 +3,9 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Lottie from "lottie-react";
-import mainAnimation from "@/animation/tutor-main.json";
+import mainAnimation from "@/animation/student-main.json";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
-
 
 interface HeroProps {
   user?: User | null;
@@ -23,16 +22,16 @@ export const Hero = ({ user }: HeroProps) => {
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
-        <p className="text-4xl font-bold lg:text-6xl text-center lg:text-left">Welcome, {user?.name}! Let's start with your first class of the day!</p>
+        <p className="text-4xl font-bold lg:text-6xl text-center lg:text-left">Welcome, {user?.name}! Let's start with your first lesson of the day!</p>
 
         <p className="mt-5 text-md text-center lg:text-left">
-          Make teaching an engaging and rewarding experience!
+          Make learning an engaging and rewarding experience!
         </p>
         <div className="flex flex-col lg:gap-5 lg:flex-row gap-0 w-full">
           <Button
             className="rounded-full bg-black lg:w-28 mt-5 cursor-pointer text-white font-semibold"
             onClick={() => {
-              router.push("tutor/profile");
+              router.push("student/profile");
             }}
           >
             My Profile
