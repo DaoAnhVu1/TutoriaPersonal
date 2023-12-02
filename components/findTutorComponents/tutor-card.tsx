@@ -1,8 +1,8 @@
-import { User } from "@prisma/client";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import Link from "next/link";
 interface TutorCardProps {
   tutorInfo: any;
 }
@@ -24,6 +24,15 @@ const TutorCard = ({ tutorInfo }: TutorCardProps) => {
             </div>
           </div>
           <div>
+            <Link href={`/profile/${tutorInfo.id}`}>
+              <Badge
+                variant={"secondary"}
+                className="text-lg mr-3 cursor-pointer"
+              >
+                Visit profile
+              </Badge>
+            </Link>
+
             <Badge className="text-lg font-semibold bg-green-600 cursor-pointer">
               Schedule this tutor
             </Badge>
