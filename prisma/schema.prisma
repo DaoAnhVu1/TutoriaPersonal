@@ -60,13 +60,12 @@ model UsersSubjects {
 }
 
 model AvailableTime {
-  id              String            @id @default(uuid())
-  weekDay         Int
-  startTime       String
-  endTime         String
-  userId          String
-  user            User              @relation(fields: [userId], references: [id])
-  LearningSession LearningSession[]
+  id        String @id @default(uuid())
+  weekDay   Int
+  startTime String
+  endTime   String
+  userId    String
+  user      User   @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }
@@ -79,18 +78,16 @@ enum SessionStatus {
 }
 
 model LearningSession {
-  id              String        @id @default(uuid())
-  tutorId         String
-  tutor           User          @relation("LearningSessionTutor", fields: [tutorId], references: [id])
-  studentId       String
-  student         User          @relation("LearningSessionStudent", fields: [studentId], references: [id])
-  status          String
-  availableTimeId String
-  availableTime   AvailableTime @relation(fields: [availableTimeId], references: [id])
+  id        String @id @default(uuid())
+  tutorId   String
+  tutor     User   @relation("LearningSessionTutor", fields: [tutorId], references: [id])
+  studentId String
+  student   User   @relation("LearningSessionStudent", fields: [studentId], references: [id])
+  status    String
+  date      String
 
   @@index([tutorId])
   @@index([studentId])
-  @@index([availableTimeId])
 }
 
 model Review {
