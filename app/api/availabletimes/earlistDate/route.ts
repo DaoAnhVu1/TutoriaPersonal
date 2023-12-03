@@ -4,6 +4,11 @@ export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const availableTimeId = searchParams.get("availableTimeId")!;
+    const tutorId = searchParams.get("tutorId");
+
+    if (!availableTimeId || !tutorId) {
+      return new NextResponse("Available ID missing", { status: 400 });
+    }
     const availableTime = await db.availableTime.findUnique({
       where: {
         id: availableTimeId,
@@ -25,6 +30,7 @@ export async function GET(req: Request) {
       const earlistAvailableTime = await db.learningSession.findFirst({
         where: {
           date: formattedDate,
+          id: tutorId,
         },
       });
 

@@ -10,7 +10,9 @@ const TutorLayout = async ({ children }: { children: React.ReactNode }) => {
   }
   return (
     <div>
-     {children}
+      <Header user={current} />
+      {children}
+      <Footer />
     </div>
   );
 };

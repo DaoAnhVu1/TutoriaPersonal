@@ -82,9 +82,9 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
             <h2 className="font-semibold text-4xl text-center">{user?.name}</h2>
             <ScheduleButton
               tutorName={user.name}
+              tutorId={user.id}
               availableTimes={availableTimes}
             />
-            <h3 className="w-full mt-5">{user?.description}</h3>
             <div className="flex gap-2 w-full items-center justify-start flex-wrap">
               <span>Subjects: </span>
               {userSubjects.map((subject) => (
@@ -96,7 +96,11 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
           </div>
 
           <div className="description-container basis-3/4 min-h-[800px] w-full mt-16 md:mt-0  ml-0 md:ml-16 flex flex-col gap-3">
-            <h2 className="w-full font-semibold text-2xl">Qualification</h2>
+            <h2 className="w-full font-semibold text-2xl">Description</h2>
+            <h3 className="w-full ">{user?.description}</h3>
+            <h2 className="w-full font-semibold text-2xl mt-5">
+              Qualification
+            </h2>
             <div className="qualification-container flex justify-center">
               <ScrollArea className="w-full whitespace-nowrap rounded-md border">
                 <div className="flex w-max space-x-4 p-4">
@@ -121,7 +125,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
                 <ScrollBar orientation="horizontal" />
               </ScrollArea>
             </div>
-            <div className="schedule-container mt-2">
+            <div className="schedule-container mt-5">
               <div className="flex justify-between">
                 <h2 className="font-semibold text-2xl ">Available time</h2>
               </div>

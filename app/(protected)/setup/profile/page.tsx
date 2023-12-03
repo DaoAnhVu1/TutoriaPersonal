@@ -144,7 +144,7 @@ const SetupProfile = () => {
                 </div>
                 <div>
                   <p className="text-xl font-semibold text-center">
-                    I am a student and trying to learn new things
+                    I am a student 
                   </p>
                 </div>
               </div>
@@ -162,7 +162,7 @@ const SetupProfile = () => {
                 </div>
                 <div>
                   <p className="text-xl font-semibold text-center">
-                    I am a tutor and I want to share my knowledge
+                    I am a tutor 
                   </p>
                 </div>
               </div>

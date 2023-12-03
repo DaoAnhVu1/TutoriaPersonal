@@ -33,7 +33,7 @@ model User {
 model Qualification {
   id                 String @id @default(uuid())
   qualification_name String
-  description        String
+  description        String @db.LongText
   imageUrl           String
 
   userId String
@@ -78,14 +78,14 @@ enum SessionStatus {
 }
 
 model LearningSession {
+  id        String        @id @default(uuid())
   tutorId   String
-  tutor     User   @relation("LearningSessionTutor", fields: [tutorId], references: [id])
+  tutor     User          @relation("LearningSessionTutor", fields: [tutorId], references: [id])
   studentId String
-  student   User   @relation("LearningSessionStudent", fields: [studentId], references: [id])
-  status    String
+  student   User          @relation("LearningSessionStudent", fields: [studentId], references: [id])
+  status    SessionStatus
   date      String
 
-  @@id([tutorId, studentId])
   @@index([tutorId])
   @@index([studentId])
 }

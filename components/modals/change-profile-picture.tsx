@@ -29,41 +29,31 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  qualificationName: z.string().min(5, {
-    message: "Please enter qualification name",
-  }),
-  qualificationDescription: z.string().min(10, {
-    message: "Please enter the description",
-  }),
-  qualificationImageUrl: z.string().min(5, {
+  avatarImageUrl: z.string().min(5, {
     message: "Upload an image",
   }),
 });
 
-const AddQualificationModal = () => {
+const ChangeAvatarModal = () => {
   const { isOpen, type, onClose, data } = useModal();
   const [file, setFile] = useState<File>();
   const [progress, setProgress] = useState(0);
   const { edgestore } = useEdgeStore();
-  const modalOpenState = isOpen && type === "addQualification";
+  const modalOpenState = isOpen && type === "changeAvatar";
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      qualificationName: "",
-      qualificationDescription: "",
-      qualificationImageUrl: "",
+      avatarImageUrl: "",
     },
   });
 
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const response = await axios.post(`/api/qualifications`, {
+    const response = await axios.post(`/api/users/changeAvatar`, {
       userId: data.user?.id,
-      qualificationName: values.qualificationName,
-      qualificationImageUrl: values.qualificationImageUrl,
-      qualificationDescription: values.qualificationDescription,
+      avatarImageUrl: values.avatarImageUrl,
     });
     onClose();
     form.reset();
@@ -82,14 +72,14 @@ const AddQualificationModal = () => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-center text-2xl">
-            Add qualification
+            Change profile picture
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
-              name="qualificationImageUrl"
+              name="avatarImageUrl"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -114,54 +104,19 @@ const AddQualificationModal = () => {
                           if (file) {
                             const res = await edgestore.myPublicImages.upload({
                               file,
-                              input: { type: "qualification" },
+                              input: { type: "userImage" },
                               onProgressChange: (progress) => {
                                 setProgress(progress);
                               },
                             });
-                            form.setValue("qualificationImageUrl", res.url);
                             alert("Upload completed");
+                            form.setValue("avatarImageUrl", res.url);
                           }
                         }}
                       >
                         Upload
                       </Button>
                     </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="qualificationName"
-              render={({ field }) => (
-                <FormItem className="mt-5">
-                  <FormLabel>Qualification Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="Enter the name of qualifications"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="qualificationDescription"
-              render={({ field }) => (
-                <FormItem className="mt-5">
-                  <FormLabel>Qualification Description</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      className="resize-none"
-                      placeholder="Enter the description"
-                      {...field}
-                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -184,4 +139,4 @@ const AddQualificationModal = () => {
   );
 };
 
-export default AddQualificationModal;
+export default ChangeAvatarModal;

@@ -6,6 +6,7 @@ import { db } from "@/lib/db";
 import DisplaySubject from "@/components/tutorProfileComponents/display-subject";
 import DisplayQualification from "@/components/tutorProfileComponents/display-qualification";
 import DisplaySchedule from "@/components/tutorProfileComponents/display-schedule";
+import ChangeAvatarButton from "./change-avatar-button";
 
 const TutorProfilePage = async () => {
   const user = await currentUser();
@@ -59,10 +60,7 @@ const TutorProfilePage = async () => {
             />
           </div>
           <h2 className="font-semibold text-4xl text-center">{user?.name}</h2>
-          <Button className="w-full bg-green-600 mt-5">
-            Change profile picture
-          </Button>
-          <h3 className="w-full">{user?.description}</h3>
+          <ChangeAvatarButton user={user} />
           <div className="flex gap-2 w-full items-center justify-start flex-wrap">
             <span>Subjects: </span>
             <DisplaySubject
@@ -74,6 +72,8 @@ const TutorProfilePage = async () => {
         </div>
 
         <div className="description-container basis-3/4 min-h-[800px] w-full mt-16 md:mt-0  ml-0 md:ml-16 flex flex-col gap-3">
+          <h2 className="w-full font-semibold text-2xl">Description</h2>
+          <h3 className="w-full">{user?.description}</h3>
           <h2 className="w-full font-semibold text-2xl">Qualification</h2>
           <div className="qualification-container flex justify-center">
             <DisplayQualification user={user} qualifications={qualifications} />

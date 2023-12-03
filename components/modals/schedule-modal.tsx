@@ -18,15 +18,17 @@ import {
 } from "@/components/ui/select";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
 const ScheduleModal = () => {
   const { isOpen, type, onClose, data } = useModal();
   const [loading, setLoading] = useState(false);
-  const [dateString, setDateString] = useState("");
+  const [dateString, setDateString] = useState(null);
   const modalOpen = isOpen && type === "schedule";
+  const session = useSession();
   const [availableTimeId, setAvailableTimeId] = useState<any>("");
   const handleClose = () => {
-    setDateString("");
+    setDateString(null);
     setAvailableTimeId("");
     onClose();
   };
@@ -34,10 +36,9 @@ const ScheduleModal = () => {
   useEffect(() => {
     async function fetchDate() {
       setLoading(true);
-      console.log("called");
       if (availableTimeId !== "") {
         const earlistDate = await axios.get(
-          `/api/availabletimes/earlistDate?availableTimeId=${availableTimeId}`
+          `/api/availabletimes/earlistDate?availableTimeId=${availableTimeId}&tutorId=${tutorInfo.tutorId}`
         );
         setDateString(earlistDate.data.formattedDate);
       }
@@ -58,6 +59,21 @@ const ScheduleModal = () => {
     7: "Sunday",
   };
 
+  const handleSubmit = async () => {
+    if (dateString === "") {
+      alert("Choose a date first");
+      return;
+    }
+    setLoading(true);
+    const values = {
+      dateString,
+      tutorId: tutorInfo.tutorId,
+      studentId: session.data?.user.id,
+    };
+    const response = await axios.post("/api/learningsession", { ...values });
+    console.log(response.data);
+    handleClose();
+  };
   return (
     <Dialog open={modalOpen} onOpenChange={handleClose}>
       <DialogContent>
@@ -95,14 +111,19 @@ const ScheduleModal = () => {
           </Select>
         </div>
         <h3 className="mt-3">
-          {!loading && dateString !== "" ? (
+          {!loading && dateString !== null ? (
             <>Your schedule will be on: {dateString}</>
           ) : (
             <>The earlist date available will be display here</>
           )}
         </h3>
         <DialogFooter>
-          <Button disabled={loading}>Submit</Button>
+          <Button
+            disabled={loading || dateString === null}
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

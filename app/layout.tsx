@@ -4,8 +4,6 @@ import "./globals.css";
 import AuthProvider from "@/components/providers/auth-provider";
 import ModalProvider from "@/components/providers/modal-provider";
 import { EdgeStoreProvider } from "@/lib/edgestore";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
 import { currentUser } from "@/lib/current-user";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -27,9 +25,7 @@ export default async function RootLayout({
         <EdgeStoreProvider>
           <ModalProvider />
           <body className={inter.className}>
-            <Header user={current} />
             <main>{children}</main>
-            <Footer />
           </body>
         </EdgeStoreProvider>
       </AuthProvider>

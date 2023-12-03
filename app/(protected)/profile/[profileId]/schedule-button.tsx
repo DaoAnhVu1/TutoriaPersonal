@@ -4,12 +4,17 @@ import { useModal } from "@/hooks/use-modal";
 import { AvailableTime } from "@prisma/client";
 
 interface ScheduleButtonProps {
+  tutorId: string;
   tutorName: string;
   availableTimes: AvailableTime[];
 }
-const ScheduleButton = ({ tutorName, availableTimes }: ScheduleButtonProps) => {
+const ScheduleButton = ({
+  tutorName,
+  availableTimes,
+  tutorId,
+}: ScheduleButtonProps) => {
   const { onOpen } = useModal();
-  const tutorInfo = { tutorName, availableTimes };
+  const tutorInfo = { tutorName, availableTimes, tutorId };
   return (
     <Button
       className="w-full bg-green-600 text-lg"

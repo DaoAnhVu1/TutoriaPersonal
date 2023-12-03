@@ -22,6 +22,10 @@ const TutorCard = ({ tutorInfo }: TutorCardProps) => {
               <p className="text-xl text-green-600 font-semibold">
                 {tutorInfo.name}
               </p>
+              <p className="mt-2">
+                <span className="font-semibold">${tutorInfo.costPerHour}</span>
+                /hr
+              </p>
             </div>
           </div>
           <div>
@@ -32,10 +36,7 @@ const TutorCard = ({ tutorInfo }: TutorCardProps) => {
             </Link>
           </div>
         </div>
-        <p className="mt-3">
-          <span className="font-semibold">${tutorInfo.costPerHour}</span>/hr
-        </p>
-        <p className="mt-3">{tutorInfo.description}</p>
+        <ScrollArea className="h-24 mt-5">{tutorInfo.description}</ScrollArea>
         <ScrollArea className="mt-3 whitespace-nowrap">
           <div className="flex w-max ">
             {tutorInfo.subjects &&

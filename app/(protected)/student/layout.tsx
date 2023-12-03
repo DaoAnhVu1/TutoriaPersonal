@@ -8,7 +8,13 @@ const StudentLayout = async ({ children }: { children: React.ReactNode }) => {
   if (current?.role !== "STUDENT") {
     return redirect("/");
   }
-  return <div>{children}</div>;
+  return (
+    <div>
+      <Header user={current} />
+      {children}
+      <Footer />
+    </div>
+  );
 };
 
 export default StudentLayout;

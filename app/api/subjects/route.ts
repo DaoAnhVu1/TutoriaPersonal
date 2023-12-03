@@ -2,7 +2,11 @@ import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 export async function GET(req: Request) {
   try {
-    const subjects = await db.subject.findMany();
+    const subjects = await db.subject.findMany({
+      orderBy: {
+        name: "asc",
+      },
+    });
     return NextResponse.json(subjects);
   } catch (error) {
     console.log("[SUBJECT ERROR]", error);

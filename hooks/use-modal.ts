@@ -7,7 +7,8 @@ export type ModalType =
   | "addSubject"
   | "addQualification"
   | "addAvailableTime"
-  | "schedule";
+  | "schedule"
+  | "changeAvatar";
 
 interface ModalData {
   user?: User | null;
