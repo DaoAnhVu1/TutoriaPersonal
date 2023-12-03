@@ -78,7 +78,6 @@ enum SessionStatus {
 }
 
 model LearningSession {
-  id        String @id @default(uuid())
   tutorId   String
   tutor     User   @relation("LearningSessionTutor", fields: [tutorId], references: [id])
   studentId String
@@ -86,6 +85,7 @@ model LearningSession {
   status    String
   date      String
 
+  @@id([tutorId, studentId])
   @@index([tutorId])
   @@index([studentId])
 }

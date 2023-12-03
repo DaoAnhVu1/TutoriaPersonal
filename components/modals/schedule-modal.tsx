@@ -1,10 +1,13 @@
+"use client";
 import { useModal } from "@/hooks/use-modal";
 import {
   Dialog,
   DialogContent,
   DialogTitle,
+  DialogFooter,
   DialogHeader,
 } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectTrigger,
@@ -13,13 +16,35 @@ import {
   SelectItem,
   SelectGroup,
 } from "@/components/ui/select";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const ScheduleModal = () => {
   const { isOpen, type, onClose, data } = useModal();
+  const [loading, setLoading] = useState(false);
+  const [dateString, setDateString] = useState("");
   const modalOpen = isOpen && type === "schedule";
+  const [availableTimeId, setAvailableTimeId] = useState<any>("");
   const handleClose = () => {
+    setDateString("");
+    setAvailableTimeId("");
     onClose();
   };
+
+  useEffect(() => {
+    async function fetchDate() {
+      setLoading(true);
+      console.log("called");
+      if (availableTimeId !== "") {
+        const earlistDate = await axios.get(
+          `/api/availabletimes/earlistDate?availableTimeId=${availableTimeId}`
+        );
+        setDateString(earlistDate.data.formattedDate);
+      }
+      setLoading(false);
+    }
+    fetchDate();
+  }, [availableTimeId]);
 
   const tutorInfo = data.tutorInfo;
 
@@ -42,7 +67,11 @@ const ScheduleModal = () => {
           </DialogTitle>
         </DialogHeader>
         <div>
-          <Select>
+          <Select
+            onValueChange={(value) => {
+              setAvailableTimeId(value);
+            }}
+          >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select a day" />
             </SelectTrigger>
@@ -66,8 +95,15 @@ const ScheduleModal = () => {
           </Select>
         </div>
         <h3 className="mt-3">
-          The tutor&apos;s earliest available time will be shown here.
+          {!loading && dateString !== "" ? (
+            <>Your schedule will be on: {dateString}</>
+          ) : (
+            <>The earlist date available will be display here</>
+          )}
         </h3>
+        <DialogFooter>
+          <Button disabled={loading}>Submit</Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
