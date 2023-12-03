@@ -1,14 +1,12 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { currentUser } from "../../../../lib/current-user";
+import { currentUser } from "@/lib/current-user";
+import { Button } from "@/components/ui/button";
+import ScheduleButton from "./schedule-button";
 import {
   Table,
-  TableCaption,
   TableHeader,
   TableRow,
   TableHead,
@@ -82,6 +80,10 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
               />
             </div>
             <h2 className="font-semibold text-4xl text-center">{user?.name}</h2>
+            <ScheduleButton
+              tutorName={user.name}
+              availableTimes={availableTimes}
+            />
             <h3 className="w-full mt-5">{user?.description}</h3>
             <div className="flex gap-2 w-full items-center justify-start flex-wrap">
               <span>Subjects: </span>

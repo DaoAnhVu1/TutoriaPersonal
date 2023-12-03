@@ -6,11 +6,13 @@ export type ModalType =
   | "profile"
   | "addSubject"
   | "addQualification"
-  | "addAvailableTime";
+  | "addAvailableTime"
+  | "schedule";
 
 interface ModalData {
   user?: User | null;
   allSubjects?: Subject[];
+  tutorInfo?: any;
 }
 
 interface ModalStore {

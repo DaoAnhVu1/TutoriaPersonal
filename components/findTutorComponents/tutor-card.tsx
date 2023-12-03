@@ -3,6 +3,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Link from "next/link";
+
 interface TutorCardProps {
   tutorInfo: any;
 }
@@ -25,17 +26,10 @@ const TutorCard = ({ tutorInfo }: TutorCardProps) => {
           </div>
           <div>
             <Link href={`/profile/${tutorInfo.id}`}>
-              <Badge
-                variant={"secondary"}
-                className="text-lg mr-3 cursor-pointer"
-              >
+              <Badge className="text-lg cursor-pointer bg-green-600">
                 Visit profile
               </Badge>
             </Link>
-
-            <Badge className="text-lg font-semibold bg-green-600 cursor-pointer">
-              Schedule this tutor
-            </Badge>
           </div>
         </div>
         <p className="mt-3">

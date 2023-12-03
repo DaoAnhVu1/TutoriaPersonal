@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import TutorCard from "./tutor-card";
 import { UserSubjectsWithSubjects } from "@/type";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface DisplayTutorProps {
@@ -9,7 +10,17 @@ interface DisplayTutorProps {
 }
 const DisplayTutor = ({ tutors, loading }: DisplayTutorProps) => {
   if (loading) {
-    return <p className="h-[800px]">Loading...</p>;
+    return (
+      <div className="flex h-[800px] flex-col gap-5">
+        <div className="flex flex-col gap-3">
+          <Skeleton className="h-12 w-full" />
+          <div className="space-y-5">
+            <Skeleton className="h-24 w-full" />
+            <Skeleton className="h-24 w-full" />
+          </div>
+        </div>
+      </div>
+    );
   }
   return (
     <div className="w-full mt-10 h-[800px] md:mt-0">
