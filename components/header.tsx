@@ -37,7 +37,7 @@ const Header = ({ user }: HeaderProps) => {
             onClick={() => onOpen("profile", { user })}
           >
             {/* @ts-ignore */}
-            <AvatarImage src={user?.imageUrl} />
+            <AvatarImage src={user?.imageUrl} className="object-cover"/>
             <AvatarFallback>TT</AvatarFallback>
           </Avatar>
         )}
