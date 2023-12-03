@@ -15,7 +15,7 @@ const TutorCard = ({ tutorInfo }: TutorCardProps) => {
         <div className="card-header flex justify-between">
           <div className="flex">
             <Avatar className="h-16 w-16">
-              <AvatarImage src={tutorInfo.imageUrl} />
+              <AvatarImage src={tutorInfo.imageUrl} className="object-cover" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div className="ml-3">

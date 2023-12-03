@@ -56,7 +56,7 @@ const TutorProfilePage = async () => {
               src={user?.imageUrl}
               fill
               alt="hello"
-              className="rounded-full block"
+              className="rounded-full block object-cover"
             />
           </div>
           <h2 className="font-semibold text-4xl text-center">{user?.name}</h2>

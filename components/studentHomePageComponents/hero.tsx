@@ -15,7 +15,7 @@ interface HeroProps {
 export const Hero = ({ user }: HeroProps) => {
   const router = useRouter();
   return (
-    <div className="hero-container flex flex-col-reverse lg:flex-row py-12 px-10 gap-1 w-full min-h-full">
+    <div className="hero-container flex flex-col-reverse lg:flex-row py-12 px-10 gap-1 w-full min-h-[600px]">
       <motion.div
         className="flex-1 flex flex-col gap-1 justify-center pl-10"
         initial={{ opacity: 0, x: 100 }}
@@ -37,10 +37,11 @@ export const Hero = ({ user }: HeroProps) => {
               Find Tutor
             </Button>
           </Link>
-
-          <Button className="rounded-full bg-green-600 lg:w-28 mt-5 cursor-pointer font-semibold hover:bg-green-500">
-            My Schedule
-          </Button>
+          <Link href={"/student/schedule"}>
+            <Button className="rounded-full bg-green-600 lg:w-28 mt-5 cursor-pointer font-semibold hover:bg-green-500">
+              My Schedule
+            </Button>
+          </Link>
         </div>
       </motion.div>
       <motion.div

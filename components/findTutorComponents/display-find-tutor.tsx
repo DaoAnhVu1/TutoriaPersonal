@@ -18,7 +18,7 @@ const DisplayFindTutor = ({ allSubjects }: DisplayFindTutorProps) => {
   const [matchedTutors, setMatchedTutors] = useState<User[]>([]);
   const [maxPage, setMaxPage] = useState<number>(1);
 
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
 
   useEffect(() => {
     const fetchData = async () => {

@@ -19,6 +19,7 @@ import {
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const ScheduleModal = () => {
   const { isOpen, type, onClose, data } = useModal();
@@ -49,6 +50,8 @@ const ScheduleModal = () => {
 
   const tutorInfo = data.tutorInfo;
 
+  const router = useRouter();
+
   const daysOfWeekMap = {
     1: "Monday",
     2: "Tuesday",
@@ -73,6 +76,7 @@ const ScheduleModal = () => {
     const response = await axios.post("/api/learningsession", { ...values });
     console.log(response.data);
     handleClose();
+    router.push("/student/schedule");
   };
   return (
     <Dialog open={modalOpen} onOpenChange={handleClose}>

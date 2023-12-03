@@ -30,7 +30,7 @@ export async function GET(req: Request) {
       const earlistAvailableTime = await db.learningSession.findFirst({
         where: {
           date: formattedDate,
-          id: tutorId,
+          tutorId: tutorId,
         },
       });
 

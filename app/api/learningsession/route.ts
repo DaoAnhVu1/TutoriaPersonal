@@ -18,3 +18,23 @@ export async function POST(req: Request) {
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
+
+export async function PATCH(req: Request) {
+  try {
+    const { sessionId, newStatus } = await req.json();
+
+    await db.learningSession.update({
+      where: {
+        id: sessionId,
+      },
+      data: {
+        status: newStatus,
+      },
+    });
+
+    return NextResponse.json({ success: true }, { status: 200 });
+  } catch (error) {
+    console.log("[AVAILABLE TIMES ERROR]", error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+}

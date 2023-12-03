@@ -8,7 +8,7 @@ export async function GET(req: Request) {
     const subjectIds = searchParams.get("subjectIds")
       ? searchParams.get("subjectIds")!.split(",")
       : [];
-    const itemsPerPage = 10;
+    const itemsPerPage = 5;
 
     const skip = (pageNumber - 1) * itemsPerPage;
 

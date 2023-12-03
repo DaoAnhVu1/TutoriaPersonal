@@ -9,9 +9,10 @@ interface DisplayTutorProps {
   loading: boolean;
 }
 const DisplayTutor = ({ tutors, loading }: DisplayTutorProps) => {
+  console.log(tutors.length);
   if (loading) {
     return (
-      <div className="flex h-[800px] flex-col gap-5">
+      <div className="flex h-[600px] flex-col gap-5">
         <div className="flex flex-col gap-3">
           <Skeleton className="h-12 w-full" />
           <div className="space-y-5">
@@ -23,17 +24,22 @@ const DisplayTutor = ({ tutors, loading }: DisplayTutorProps) => {
     );
   }
   return (
-    <div className="w-full mt-10 h-[800px] md:mt-0">
+    <div className="w-full mt-10 min-h-[600px] md:mt-0">
       <h2 className="text-2xl font-semibold block md:hidden mb-5 md:mb-0">
         Available Tutors
       </h2>
-      <ScrollArea className="h-[700px]">
+      <div>
         <div className="grid grid-cols-1 gap-5">
+          {tutors.length == 0 && (
+            <div className="text-center">
+              There is no tutor matching your criteria
+            </div>
+          )}
           {tutors.map((tutor) => (
             <TutorCard key={tutor.id} tutorInfo={tutor} />
           ))}
         </div>
-      </ScrollArea>
+      </div>
     </div>
   );
 };
