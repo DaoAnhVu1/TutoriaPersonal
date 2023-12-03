@@ -32,8 +32,8 @@ const DisplayFindTutor = ({ allSubjects }: DisplayFindTutorProps) => {
         },
       });
       const tutors = await axios.get(url);
-      setMatchedTutors(tutors.data);
-      setMaxPage(Math.ceil(tutors.data.length / itemsPerPage));
+      setMatchedTutors(tutors.data.tutors);
+      setMaxPage(Math.ceil(tutors.data.total / itemsPerPage));
       setLoading(false);
     };
     fetchData();

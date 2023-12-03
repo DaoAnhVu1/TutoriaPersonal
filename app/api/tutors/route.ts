@@ -38,8 +38,10 @@ export async function GET(req: Request) {
       skip,
       take: itemsPerPage,
     });
-
-    return NextResponse.json(tutors, { status: 200 });
+    const total = await db.user.count({
+      where: whereCondition,
+    });
+    return NextResponse.json({ tutors, total }, { status: 200 });
   } catch (error) {
     console.error("[SUBJECT ERROR]", error);
     return new NextResponse("Internal Error", { status: 500 });

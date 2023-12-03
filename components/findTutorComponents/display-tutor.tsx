@@ -9,7 +9,6 @@ interface DisplayTutorProps {
   loading: boolean;
 }
 const DisplayTutor = ({ tutors, loading }: DisplayTutorProps) => {
-  console.log(tutors.length);
   if (loading) {
     return (
       <div className="flex h-[600px] flex-col gap-5">
