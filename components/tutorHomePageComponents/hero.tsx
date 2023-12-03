@@ -23,7 +23,7 @@ export const Hero = ({ user }: HeroProps) => {
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
-        <p className="text-4xl font-bold lg:text-6xl text-center lg:text-left">Welcome, {user?.name}! Let's start with your first class of the day!</p>
+        <p className="text-4xl font-bold lg:text-6xl text-center lg:text-left">Welcome, {user?.name}! Let&apos;s start with your first class of the day!</p>
 
         <p className="mt-5 text-md text-center lg:text-left">
           Make teaching an engaging and rewarding experience!
