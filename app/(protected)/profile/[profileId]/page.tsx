@@ -112,13 +112,15 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
                       <Image
                         src={qualification.imageUrl}
                         alt="haha"
-                        className="aspect-[4/4] rounded-md  object-cover"
-                        width={200}
+                        className="aspect-[4/4] rounded-md  object-cover self-center"
+                        width={300}
                         height={200}
                       />
-                      <p className="text-center mt-1">
-                        {qualification.qualification_name}
-                      </p>
+                      <div className="w-full">
+                        <p className="text-center mt-2">
+                          {qualification.qualification_name}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
