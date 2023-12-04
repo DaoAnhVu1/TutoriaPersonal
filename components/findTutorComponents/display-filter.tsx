@@ -9,12 +9,16 @@ interface DisplayFilterProps {
   subjects: Subject[];
   validSubjects: Subject[];
   setValidSubjects: (selectedSubjects: Subject[]) => void;
+  searchTerm: string;
+  setSearchTerm: (searchTerms: string) => void;
 }
 
 const DisplayFilter = ({
   subjects,
   validSubjects,
   setValidSubjects,
+  searchTerm,
+  setSearchTerm,
 }: DisplayFilterProps) => {
   return (
     <>
@@ -27,10 +31,9 @@ const DisplayFilter = ({
           <Input
             className="w-full inline-block"
             placeholder="Enter name"
-          ></Input>
-          <Button>
-            <Search />
-          </Button>
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
       </div>
       <Separator className="w-full mb-3" />
