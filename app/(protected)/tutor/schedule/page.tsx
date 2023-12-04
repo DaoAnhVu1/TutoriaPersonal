@@ -11,6 +11,7 @@ import IncomingRequestButton from "./incoming-request-button";
 import { Button } from "@/components/ui/button";
 import { Video, X, Check } from "lucide-react";
 import onlineLearning from "@/public/online-learning-2.jpg";
+import Link from "next/link";
 
 const TutorSchedule = async () => {
   const current = await currentUser();
@@ -120,9 +121,11 @@ const TutorSchedule = async () => {
                           </p>
                         </div>
                         <div className="h-full flex gap-3 flex-col items-center mt-5 ">
-                          <Button className="bg-green-600 w-1/2 md:w-full">
-                            <Video className="mr-2" /> Join meeting
-                          </Button>
+                          <Link href={`/learningsession/${session.id}`}>
+                            <Button className="bg-green-600 w-1/2 md:w-full">
+                              <Video className="mr-2" /> Join meeting
+                            </Button>
+                          </Link>
                         </div>
                       </CardContent>
                     </Card>

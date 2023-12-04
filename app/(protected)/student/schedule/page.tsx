@@ -11,6 +11,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { currentUser } from "@/lib/current-user";
 import StudentInProgressButton from "./in-progress-button";
 import onlineLearning from "@/public/online-learning-1.jpg";
+import Link from "next/link";
 const StudentSchedule = async () => {
   const current = await currentUser();
   const allLearningSessions = await db.learningSession.findMany({
@@ -119,9 +120,12 @@ const StudentSchedule = async () => {
                           </p>
                         </div>
                         <div className="h-full flex gap-3 flex-col items-center mt-5 ">
-                          <Button className="bg-green-600 w-1/2 md:w-full">
-                            <Video className="mr-2" /> Join meeting
-                          </Button>
+                          <Link href={`/learningsession/${session.id}`}>
+                            <Button className="bg-green-600 w-1/2 md:w-full">
+                              <Video className="mr-2" /> Join meeting
+                            </Button>
+                          </Link>
+
                           <StudentInProgressButton />
                         </div>
                       </CardContent>
