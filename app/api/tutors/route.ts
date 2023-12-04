@@ -8,6 +8,8 @@ export async function GET(req: Request) {
     const subjectIds = searchParams.get("subjectIds")
       ? searchParams.get("subjectIds")!.split(",")
       : [];
+
+    const name = searchParams.get("name");
     const itemsPerPage = 5;
 
     const skip = (pageNumber - 1) * itemsPerPage;
@@ -23,6 +25,12 @@ export async function GET(req: Request) {
             in: subjectIds,
           },
         },
+      };
+    }
+
+    if (!!name) {
+      whereCondition.name = {
+        contains: `${name}`,
       };
     }
 
