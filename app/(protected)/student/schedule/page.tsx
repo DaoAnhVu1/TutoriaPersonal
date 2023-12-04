@@ -6,12 +6,14 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
-import { Video, X, Check } from "lucide-react";
+import { Video, X, Check, ThumbsUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { currentUser } from "@/lib/current-user";
 import StudentInProgressButton from "./in-progress-button";
 import onlineLearning from "@/public/online-learning-1.jpg";
 import Link from "next/link";
+import WriteReviewButton from "./write-review-button";
+
 const StudentSchedule = async () => {
   const current = await currentUser();
   const allLearningSessions = await db.learningSession.findMany({
@@ -126,7 +128,7 @@ const StudentSchedule = async () => {
                             </Button>
                           </Link>
 
-                          <StudentInProgressButton />
+                          <StudentInProgressButton sessionId={session.id} />
                         </div>
                       </CardContent>
                     </Card>
@@ -167,14 +169,27 @@ const StudentSchedule = async () => {
                         </div>
                         <div className="h-full flex gap-3 flex-col items-center mt-5 ">
                           {session.status === "COMPLETED" && (
-                            <Button className="bg-green-600  w-1/2 md:w-full">
-                              <Check className="mr-2" /> Completed
-                            </Button>
+                            <>
+                              <Button className="bg-green-600 hover:bg-green-600 cursor-default w-1/2 md:w-36">
+                                <Check className="mr-2" /> Completed
+                              </Button>
+                              {!session.writtenReview ? (
+                                <>
+                                  <WriteReviewButton sessionId={session.id} />
+                                </>
+                              ) : (
+                                <>
+                                  <Button className="cursor-default w-1/2 md:w-36">
+                                    <ThumbsUp className="mr-2" /> Thank you
+                                  </Button>
+                                </>
+                              )}
+                            </>
                           )}
                           {session.status === "REJECTED" && (
                             <Button
                               variant={"destructive"}
-                              className="w-1/2 md:w-full"
+                              className="w-1/2 cursor-default md:w-36"
                             >
                               <X className="mr-2  " /> Rejected
                             </Button>
