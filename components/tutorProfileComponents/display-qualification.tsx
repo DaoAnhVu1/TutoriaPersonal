@@ -21,23 +21,27 @@ const DisplayQualification = ({
         <div className="flex w-max space-x-4 p-4">
           {qualifications.map((qualification) => (
             <div
-              className="overflow-hidden rounded-md shrink-0"
+              className="overflow-hidden rounded-md flex flex-col"
               key={qualification.id}
             >
               <Image
                 src={qualification.imageUrl}
                 alt="haha"
-                className="aspect-[4/4] rounded-md  object-cover"
-                width={200}
+                className="aspect-[4/4] rounded-md  object-cover self-center"
+                width={300}
                 height={200}
               />
-              <p className="text-center mt-1">{qualification.qualification_name}</p>
+              <div className="w-full">
+                <p className="text-center mt-2">
+                  {qualification.qualification_name}
+                </p>
+              </div>
             </div>
           ))}
 
           <div
             onClick={() => onOpen("addQualification", { user })}
-            className="overflow-hidden cursor-pointer flex justify-center items-center rounded-md shrink-0 border w-[200px] h-[200px]"
+            className="overflow-hidden cursor-pointer flex justify-center items-center rounded-md shrink-0 border w-[300px] h-[300px]"
           >
             <Plus className="w-12 h-12" />
           </div>
