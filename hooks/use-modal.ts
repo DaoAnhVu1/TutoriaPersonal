@@ -8,12 +8,14 @@ export type ModalType =
   | "addQualification"
   | "addAvailableTime"
   | "schedule"
-  | "changeAvatar";
+  | "changeAvatar"
+  | "deleteSubject";
 
 interface ModalData {
   user?: User | null;
   allSubjects?: Subject[];
   tutorInfo?: any;
+  subjectToDelete?: any;
 }
 
 interface ModalStore {

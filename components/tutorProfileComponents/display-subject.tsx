@@ -19,7 +19,7 @@ const DisplaySubject = ({
   const { onOpen } = useModal();
   const [hoveredSubjectId, setHoveredSubjectId] = useState<number | null>(null);
 
-  const handleHover = (subjectId: number) => {
+  const handleHover = (subjectId: number | null) => {
     setHoveredSubjectId(subjectId);
   };
 
@@ -36,11 +36,23 @@ const DisplaySubject = ({
           onMouseEnter={() => handleHover(subject.subject.id)}
           onMouseLeave={() => handleHover(null)}
         >
-          <p className={`${isSubjectHovered(subject.subject.id) ? "invisible" : ""}`}>
+          <p
+            className={`${
+              isSubjectHovered(subject.subject.id) ? "invisible" : ""
+            }`}
+          >
             {subject.subject.name}
           </p>
           {isSubjectHovered(subject.subject.id) && (
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div
+              className="absolute inset-0 flex items-center justify-center"
+              onClick={() =>
+                onOpen("deleteSubject", {
+                  subjectToDelete: subject.subject,
+                  user,
+                })
+              }
+            >
               <TrashIcon className="w-5 h-5" />
             </div>
           )}

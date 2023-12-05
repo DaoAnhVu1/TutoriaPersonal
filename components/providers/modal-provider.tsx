@@ -7,6 +7,7 @@ import AddQualificationModal from "../modals/add-qualification-modal";
 import AddAvailableTimeModal from "../modals/add-available-time";
 import ScheduleModal from "../modals/schedule-modal";
 import ChangeAvatarModal from "../modals/change-profile-picture";
+import DeleteSubjectModal from "../modals/delete-subject-modal";
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -26,6 +27,7 @@ const ModalProvider = () => {
       <AddAvailableTimeModal />
       <ScheduleModal />
       <ChangeAvatarModal />
+      <DeleteSubjectModal />
     </>
   );
 };
