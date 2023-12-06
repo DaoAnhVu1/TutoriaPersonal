@@ -18,3 +18,24 @@ export async function POST(req: Request) {
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
+
+export async function DELETE(req: Request) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const availableTimeId = searchParams.get("availableTimeId")!;
+    const userId = searchParams.get("userId")!;
+    console.log("Available Time: " + availableTimeId)
+    console.log("User Id: " + userId)
+    await db.availableTime.delete({
+      where: {
+        userId: userId,
+        id: availableTimeId,
+      },
+    });
+
+    return NextResponse.json({}, { status: 200 });
+  } catch (error) {
+    console.log("[USERSUBJECT ERROR]", error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+}

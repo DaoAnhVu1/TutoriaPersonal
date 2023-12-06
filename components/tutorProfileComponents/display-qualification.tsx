@@ -21,8 +21,8 @@ const DisplayQualification = ({
         <div className="flex w-max space-x-4 p-4">
           {qualifications.map((qualification) => (
             <div
-              className="overflow-hidden rounded-md flex flex-col"
-              key={qualification.id}
+              className="overflow-hidden rounded-md flex flex-col cursor-pointer"
+              key={qualification.id} onClick={() => onOpen("editQualification", {qualification})}
             >
               <Image
                 src={qualification.imageUrl}

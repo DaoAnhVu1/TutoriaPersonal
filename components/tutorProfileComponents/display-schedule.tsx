@@ -67,7 +67,14 @@ const DisplaySchedule = ({ user, availableTimes }: DisplayScheduleProps) => {
                   <TableCell>{availableTime.endTime}</TableCell>
                   {/* @ts-ignore */}
                   <TableCell>{daysOfWeekMap[availableTime.weekDay]}</TableCell>
-                  <TableCell className="text-right">
+                  <TableCell
+                    className="text-right cursor-pointer"
+                    onClick={() =>
+                      onOpen("deleteAvailableTime", {
+                        availableTime: availableTime
+                      })
+                    }
+                  >
                     <Trash />
                   </TableCell>
                 </TableRow>
