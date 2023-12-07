@@ -29,12 +29,14 @@ const EditQualificationModal = () => {
           </DialogHeader>
         </div>
         <div className="relative w-full h-96">
-          <Image
-            fill
-            alt="lmao"
-            src={qualification && qualification?.imageUrl}
-            className="object-fill"
-          />
+          {qualification && qualification.imageUrl && (
+            <Image
+              fill
+              alt="qualification image"
+              src={qualification.imageUrl}
+              className="object-fill"
+            />
+          )}
         </div>
 
         <div className="flex flex-col gap-8">
