@@ -32,7 +32,7 @@ const EditQualificationModal = () => {
           <Image
             fill
             alt="lmao"
-            src={qualification?.imageUrl}
+            src={qualification && qualification?.imageUrl}
             className="object-fill"
           />
         </div>
