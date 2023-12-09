@@ -175,7 +175,7 @@ const StudentSchedule = async () => {
                               </Button>
                               {!session.writtenReview ? (
                                 <>
-                                  <WriteReviewButton sessionId={session.id} />
+                                  <WriteReviewButton receiverId={session.tutorId} senderId={session.studentId} sessionId={session.id} />
                                 </>
                               ) : (
                                 <>

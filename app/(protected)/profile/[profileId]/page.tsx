@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { currentUser } from "@/lib/current-user";
 import { Button } from "@/components/ui/button";
+import { FaStar } from "react-icons/fa";
 import ScheduleButton from "./schedule-button";
 import {
   Table,
@@ -54,6 +55,27 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
     },
     orderBy: [{ weekDay: "asc" }],
   });
+  const review = await db.review.findMany({
+    where: {
+      receiverId: params.profileId,
+    },
+    include: {
+      sender: true,
+      receiver: true,
+    },
+  });
+  const StarRating = ({ rating }: { rating: number }) => (
+    <div className="star-rating flex gap-3 mt-1">
+      {[...Array(5)].map((_, index) => (
+        <FaStar
+          key={index}
+          className={`h-4 w-4 ${
+            index + 1 <= rating ? "text-yellow-500" : "text-gray-300"
+          }`}
+        />
+      ))}
+    </div>
+  );
 
   const daysOfWeekMap = {
     1: "Monday",
@@ -91,6 +113,23 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
                 <Badge key={subject.subject.id} className="w-fit h-6">
                   {subject.subject.name}
                 </Badge>
+              ))}
+            </div>
+            <div className="flex flex-col w-full mt-16">
+              <h2 className="w-full font-semibold text-2xl">Reviews: </h2>
+              {review.map((reviewItem) => (
+                <div
+                  className="flex flex-col mt-5 border-2 shadow- rounded-md"
+                  key={reviewItem.id}
+                >
+                  <div className="ml-3 my-3">
+                    <p className="font-semibold text-lg">
+                      {reviewItem.sender.name}
+                    </p>
+                    <StarRating rating={reviewItem.rating} />
+                    <p className="mt-3">{reviewItem.description}</p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>

@@ -10,6 +10,7 @@ import ChangeAvatarModal from "../modals/change-profile-picture";
 import DeleteSubjectModal from "../modals/delete-subject-modal";
 import EditQualificationModal from "../modals/edit-qualification-modal";
 import DeleteAvailableTimeModal from "../modals/delete-available-time-modal";
+import ReviewModal from "../modals/review-modal";
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -32,6 +33,7 @@ const ModalProvider = () => {
       <DeleteSubjectModal />
       <EditQualificationModal />
       <DeleteAvailableTimeModal />
+      <ReviewModal/>
     </>
   );
 };

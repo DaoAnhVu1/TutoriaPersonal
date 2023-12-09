@@ -11,7 +11,8 @@ export type ModalType =
   | "changeAvatar"
   | "deleteSubject"
   | "editQualification"
-  | "deleteAvailableTime";
+  | "deleteAvailableTime"
+  | "review";
 
 interface ModalData {
   user?: User | null;
@@ -20,6 +21,9 @@ interface ModalData {
   subjectToDelete?: any;
   qualification?: Qualification;
   availableTime?: AvailableTime;
+  senderId?: string;
+  receiverId?: string;
+  sessionId?: string;
 }
 
 interface ModalStore {

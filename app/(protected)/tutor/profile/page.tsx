@@ -2,7 +2,7 @@ import { currentUser } from "@/lib/current-user";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
-
+import DisplayReview from "@/components/tutorProfileComponents/display-review";
 import DisplaySubject from "@/components/tutorProfileComponents/display-subject";
 import DisplayQualification from "@/components/tutorProfileComponents/display-qualification";
 import DisplaySchedule from "@/components/tutorProfileComponents/display-schedule";
@@ -46,6 +46,16 @@ const TutorProfilePage = async () => {
       },
     ],
   });
+
+  const review = await db.review.findMany({
+    where: {
+      receiverId: user?.id
+    },
+    include: {
+      sender: true,
+      receiver: true,
+    }
+  });
   return (
     <div className="profile-container px-10">
       <div className="top-section mt-5 flex flex-col md:flex-row">
@@ -68,6 +78,10 @@ const TutorProfilePage = async () => {
               user={user}
               allSubjects={allSubjects}
             />
+          </div>
+          <div className="flex flex-col w-full mt-16">
+            <h2 className="w-full font-semibold text-2xl">Reviews: </h2>
+            <DisplayReview review={review} />
           </div>
         </div>
 
