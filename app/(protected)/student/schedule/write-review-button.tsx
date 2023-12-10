@@ -8,7 +8,6 @@ interface WriteReviewButtonProps {
   senderId: string;
   receiverId: string;
   sessionId: string;
-  senderName: string
 }
 
 const WriteReviewButton = ({ senderId, receiverId, sessionId }: WriteReviewButtonProps) => {
