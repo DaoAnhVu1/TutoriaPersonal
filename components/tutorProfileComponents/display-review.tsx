@@ -4,7 +4,7 @@ import { FaStar } from "react-icons/fa";
 import { ScrollArea } from "../ui/scroll-area";
 
 interface DisplayReviewProps {
-  review: Review[];
+  review: any[];
 }
 
 const DisplayReview = ({ review }: DisplayReviewProps) => {
@@ -26,22 +26,20 @@ const DisplayReview = ({ review }: DisplayReviewProps) => {
         <></>
       ) : (
         <>
-          
-            {review.map((reviewItem) => (
-              <div
-                className="flex flex-col mt-5 border-2 shadow- rounded-md"
-                key={reviewItem.id}
-              >
-                <div className="ml-3 my-3">
-                  <p className="font-semibold text-lg">
-                    {reviewItem.sender.name}
-                  </p>
-                  <StarRating rating={reviewItem.rating} />
-                  <p className="mt-3">{reviewItem.description}</p>
-                </div>
+          {review.map((reviewItem) => (
+            <div
+              className="flex flex-col mt-5 border-2 shadow- rounded-md"
+              key={reviewItem.id}
+            >
+              <div className="ml-3 my-3">
+                <p className="font-semibold text-lg">
+                  {reviewItem.sender.name}
+                </p>
+                <StarRating rating={reviewItem.rating} />
+                <p className="mt-3">{reviewItem.description}</p>
               </div>
-            ))}
-          
+            </div>
+          ))}
         </>
       )}
     </>
