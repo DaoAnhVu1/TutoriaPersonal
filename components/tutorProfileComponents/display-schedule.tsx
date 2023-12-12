@@ -31,7 +31,7 @@ const DisplaySchedule = ({ user, availableTimes }: DisplayScheduleProps) => {
   return (
     <>
       <div className="flex justify-between">
-        <h2 className="font-semibold text-2xl ">Your available time</h2>
+        <h2 className="font-semibold text-2xl ">Your available time: </h2>
         <Button
           className="bg-green-600"
           onClick={() => onOpen("addAvailableTime", { user })}

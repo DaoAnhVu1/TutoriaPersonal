@@ -7,6 +7,7 @@ import DisplaySubject from "@/components/tutorProfileComponents/display-subject"
 import DisplayQualification from "@/components/tutorProfileComponents/display-qualification";
 import DisplaySchedule from "@/components/tutorProfileComponents/display-schedule";
 import ChangeAvatarButton from "./change-avatar-button";
+import DisplayEarnings from "@/components/tutorProfileComponents/display-earnings";
 
 const TutorProfilePage = async () => {
   const user = await currentUser();
@@ -30,6 +31,16 @@ const TutorProfilePage = async () => {
     },
   });
 
+  const sessions = await db.learningSession.findMany({
+    where: {
+      tutorId: user?.id
+    
+    },
+    include: {
+      tutor: true
+    }
+  })
+
   const qualifications = await db.qualification.findMany({
     where: {
       userId: user?.id,
@@ -49,12 +60,12 @@ const TutorProfilePage = async () => {
 
   const review = await db.review.findMany({
     where: {
-      receiverId: user?.id
+      receiverId: user?.id,
     },
     include: {
       sender: true,
       receiver: true,
-    }
+    },
   });
   return (
     <div className="profile-container px-10">
@@ -71,6 +82,7 @@ const TutorProfilePage = async () => {
           </div>
           <h2 className="font-semibold text-4xl text-center">{user?.name}</h2>
           <ChangeAvatarButton user={user} />
+
           <div className="flex gap-2 w-full items-center justify-start flex-wrap">
             <span>Subjects: </span>
             <DisplaySubject
@@ -79,6 +91,7 @@ const TutorProfilePage = async () => {
               allSubjects={allSubjects}
             />
           </div>
+          
           <div className="flex flex-col w-full mt-16">
             <h2 className="w-full font-semibold text-2xl">Reviews: </h2>
             <DisplayReview review={review} />
@@ -90,7 +103,11 @@ const TutorProfilePage = async () => {
           <h3 className="w-full">{user?.description}</h3>
           <h2 className="w-full font-semibold text-2xl">Qualification</h2>
           <div className="qualification-container flex justify-center">
-            <DisplayQualification user={user} qualifications={qualifications} />
+            <DisplayQualification user={user} qualifications={qualifications}/>
+          </div>
+          <div className="flex flex-col w-full mt-10 mb-3">
+            <h2 className="w-full font-semibold text-2xl mb-3">Your earnings: </h2>
+            <DisplayEarnings availableTimes={availableTimes} user={user} sessions={sessions}/>
           </div>
           <div className="schedule-container mt-2">
             <DisplaySchedule availableTimes={availableTimes} user={user} />
