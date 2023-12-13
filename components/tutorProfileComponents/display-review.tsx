@@ -27,7 +27,7 @@ const DisplayReview = ({ review }: DisplayReviewProps) => {
         <></>
       ) : (
         <>
-          {review.map((reviewItem) => (
+          {review.filter((reviewItem) => reviewItem.rating > 3).map((reviewItem) => (
             <div
               className="flex flex-col mt-5 border-2 shadow-md rounded-md"
               key={reviewItem.id}

@@ -117,7 +117,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
             </div>
             <div className="flex flex-col w-full mt-16">
               <h2 className="w-full font-semibold text-2xl">Reviews: </h2>
-              {review.map((reviewItem) => (
+              {review.filter((reviewItem) => reviewItem.rating > 3).map((reviewItem) => (
                 <div
                   className="flex flex-col mt-5 border-2 shadow-md rounded-md"
                   key={reviewItem.id}
