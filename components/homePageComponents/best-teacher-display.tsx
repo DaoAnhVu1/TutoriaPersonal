@@ -66,11 +66,12 @@ const BestTeacherDisplay = () => {
             viewport={{ once: true }}
           >
             <Card className="w-full max-w-[424px] h-[300px] flex flex-col shadow-md pt-24 pb-10 justify-center items-center relative">
+              <div className="bg-green-600 h-2 w-full absolute top-0"></div>
               <CardHeader className="text-primary absolute -top-[60px]">
                 {card.icon}
               </CardHeader>
               <CardContent>
-                <CardTitle className="text-3xl text-center mb-1 text-green-500">
+                <CardTitle className="text-3xl text-center mb-1 text-green-600">
                   {card.tutor}
                 </CardTitle>
                 <p className="text-center mb-5 text-sm">{card.subject}</p>

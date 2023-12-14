@@ -12,21 +12,21 @@ interface HeaderProps {
 const Header = ({ user }: HeaderProps) => {
   const { onOpen } = useModal();
   return (
-    <header className="h-20 flex justify-between p-5">
+    <header className="h-20 flex justify-between p-5 px-24">
       <div>
         {!!user && user.role === "STUDENT" && (
           <Link href={"/student"}>
-            <h1 className="font-bold text-2xl text-green-600 ">Tutoria</h1>
+            <h1 className="font-bold text-3xl text-green-600 ">Tutoria</h1>
           </Link>
         )}
         {!!user && user.role === "TUTOR" && (
           <Link href={"/tutor"}>
-            <h1 className="font-bold text-2xl text-green-600 ">Tutoria</h1>
+            <h1 className="font-bold text-3xl text-green-600 ">Tutoria</h1>
           </Link>
         )}
         {!user && (
           <Link href={"/"}>
-            <h1 className="font-bold text-2xl text-green-600 ">Tutoria</h1>
+            <h1 className="font-bold text-3xl text-green-600 ">Tutoria</h1>
           </Link>
         )}
       </div>
@@ -37,7 +37,7 @@ const Header = ({ user }: HeaderProps) => {
             onClick={() => onOpen("profile", { user })}
           >
             {/* @ts-ignore */}
-            <AvatarImage src={user?.imageUrl} className="object-cover"/>
+            <AvatarImage src={user?.imageUrl} className="object-cover" />
             <AvatarFallback>TT</AvatarFallback>
           </Avatar>
         )}

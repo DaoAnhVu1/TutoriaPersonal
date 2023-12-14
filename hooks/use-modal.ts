@@ -11,6 +11,7 @@ export type ModalType =
   | "changeAvatar"
   | "deleteSubject"
   | "editQualification"
+  | "editDescription"
   | "deleteAvailableTime"
   | "review";
 
@@ -24,6 +25,8 @@ interface ModalData {
   senderId?: string;
   receiverId?: string;
   sessionId?: string;
+  description?: string | undefined | null;
+  userId?: string | undefined | null;
 }
 
 interface ModalStore {

@@ -16,7 +16,7 @@ const CardsDisplay = () => {
       <h2 className="text-center text-black text-4xl font-bold mb-10 mt-10">
         The best way for online education
       </h2>
-      <div className="card-container w-full flex justify-around items-center flex-col md:flex-row gap-10 px-10 mb-24">
+      <div className="card-container w-full flex justify-around items-center flex-col md:flex-row gap-10  px-0 md:px-24 mb-10">
         {cardData.map((card, index) => (
           <motion.div
             key={index}
@@ -27,13 +27,11 @@ const CardsDisplay = () => {
             viewport={{ once: true }}
           >
             <Card className="h-72 flex flex-col justify-center hover:scale-105 transition">
-              <CardHeader>
+              <CardContent>
+                <div className="flex justify-center mb-5">{card.icon}</div>
                 <CardTitle className="text-center text-xl">{`${index + 1}. ${
                   card.title
                 }`}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex justify-center mb-5">{card.icon}</div>
               </CardContent>
             </Card>
           </motion.div>

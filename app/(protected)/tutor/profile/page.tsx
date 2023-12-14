@@ -8,6 +8,7 @@ import DisplayQualification from "@/components/tutorProfileComponents/display-qu
 import DisplaySchedule from "@/components/tutorProfileComponents/display-schedule";
 import ChangeAvatarButton from "./change-avatar-button";
 import DisplayEarnings from "@/components/tutorProfileComponents/display-earnings";
+import EditDescriptionButton from "./edit-description-button";
 
 const TutorProfilePage = async () => {
   const user = await currentUser();
@@ -33,13 +34,12 @@ const TutorProfilePage = async () => {
 
   const sessions = await db.learningSession.findMany({
     where: {
-      tutorId: user?.id
-    
+      tutorId: user?.id,
     },
     include: {
-      tutor: true
-    }
-  })
+      tutor: true,
+    },
+  });
 
   const qualifications = await db.qualification.findMany({
     where: {
@@ -68,7 +68,7 @@ const TutorProfilePage = async () => {
     },
   });
   return (
-    <div className="profile-container px-10">
+    <div className="profile-container px-10 mb-10">
       <div className="top-section mt-5 flex flex-col md:flex-row">
         <div className="avatar-container basis-1/4 flex items-center flex-col gap-3">
           <div className="w-64 h-64 relative">
@@ -91,7 +91,7 @@ const TutorProfilePage = async () => {
               allSubjects={allSubjects}
             />
           </div>
-          
+
           <div className="flex flex-col w-full mt-16">
             <h2 className="w-full font-semibold text-2xl">Reviews: </h2>
             <DisplayReview review={review} />
@@ -99,18 +99,30 @@ const TutorProfilePage = async () => {
         </div>
 
         <div className="description-container basis-3/4 min-h-[800px] w-full mt-16 md:mt-0  ml-0 md:ml-16 flex flex-col gap-3">
-          <h2 className="w-full font-semibold text-2xl">Description</h2>
+          <div className="flex items-center justify-between">
+            <h2 className="font-semibold text-2xl">Description</h2>
+            <EditDescriptionButton
+              description={user?.description}
+              userId={user?.id}
+            />
+          </div>
           <h3 className="w-full">{user?.description}</h3>
-          <h2 className="w-full font-semibold text-2xl">Qualification</h2>
+          <h2 className="w-full font-semibold text-2xl mt-5">Qualification</h2>
           <div className="qualification-container flex justify-center">
-            <DisplayQualification user={user} qualifications={qualifications}/>
+            <DisplayQualification user={user} qualifications={qualifications} />
           </div>
-          <div className="flex flex-col w-full mt-10 mb-3">
-            <h2 className="w-full font-semibold text-2xl mb-3">Your earnings: </h2>
-            <DisplayEarnings availableTimes={availableTimes} user={user} sessions={sessions}/>
-          </div>
-          <div className="schedule-container mt-2">
+          <div className="schedule-container mt-5">
             <DisplaySchedule availableTimes={availableTimes} user={user} />
+          </div>
+          <div className="flex flex-col w-full mt-4 mb-3">
+            <h2 className="w-full font-semibold text-2xl mb-3">
+              Your earnings:{" "}
+            </h2>
+            <DisplayEarnings
+              availableTimes={availableTimes}
+              user={user}
+              sessions={sessions}
+            />
           </div>
         </div>
       </div>

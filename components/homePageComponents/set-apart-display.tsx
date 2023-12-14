@@ -9,7 +9,7 @@ const SetApartDisplay = () => {
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 1 }}
       viewport={{ once: true }}
-      className="why-container w-full flex flex-col-reverse md:flex-row px-10 mb-8"
+      className="why-container w-full flex flex-col-reverse md:flex-row  px-0 md:px-24 mb-8"
     >
       <div className="flex-1 flex items-center justify-center">
         <Lottie animationData={animation} />
@@ -18,7 +18,7 @@ const SetApartDisplay = () => {
         <p className="font-bold text-4xl text-center">What sets us apart?</p>
         <p className="text-xl mt-2 text-center">
           At{" "}
-          <span className="text-emerald-500 uppercase font-semibold">
+          <span className="text-green-600 uppercase font-semibold">
             Tutoria
           </span>
           , we are committed to revolutionizing online education. Here&apos;s

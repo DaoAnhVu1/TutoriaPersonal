@@ -46,7 +46,6 @@ const DisplayEarnings = ({
     endTime: string
   ): string | null {
     const timeInterval = startTime + " - " + endTime;
-    console.log(timeInterval);
     return timeInterval;
   }
 
@@ -89,13 +88,12 @@ const DisplayEarnings = ({
   const calculatedMoneyArray: number[] = [];
   return (
     <Table>
-      <TableCaption>
-        {availableTimes.length === 0 ? (
-          <>There is no earnings, try adding some</>
-        ) : (
-          <>A list of your earnings</>
-        )}
-      </TableCaption>
+      {sessions.length === 0 && (
+        <TableCaption>
+          There is no session that is completed to calculate
+        </TableCaption>
+      )}
+
       <TableHeader>
         <TableRow>
           <TableHead>Session ID</TableHead>
@@ -112,7 +110,6 @@ const DisplayEarnings = ({
             {sessions
               .filter((session) => session.status === "COMPLETED")
               .map((session) => {
-                
                 const money = calculateMoney(
                   user?.costPerHour ?? 0,
                   `${parseIntervalTime(
@@ -123,7 +120,7 @@ const DisplayEarnings = ({
 
                 // Append the calculated money to the array
                 calculatedMoneyArray.push(money);
-                
+
                 return (
                   <TableRow key={session.id}>
                     <TableCell>{session.id}</TableCell>
@@ -151,7 +148,9 @@ const DisplayEarnings = ({
           <TableCell colSpan={3} className="font-bold">
             Total:
           </TableCell>
-          <TableCell className="font-bold">${calculatedMoneyArray.reduce((a, b) => a + b, 0).toFixed(2)}</TableCell>
+          <TableCell className="font-bold">
+            ${calculatedMoneyArray.reduce((a, b) => a + b, 0).toFixed(2)}
+          </TableCell>
         </TableRow>
       </TableFooter>
     </Table>

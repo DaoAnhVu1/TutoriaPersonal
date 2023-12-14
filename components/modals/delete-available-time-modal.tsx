@@ -23,12 +23,11 @@ const DeleteAvailableTimeModal = () => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-center">
-            Are you sure you want to delete this timeslot?
+            Are you sure you want to delete this timeslot ?
           </DialogTitle>
         </DialogHeader>
         <DialogFooter>
           <Button
-            
             disabled={loading}
             variant={"destructive"}
             onClick={() => {

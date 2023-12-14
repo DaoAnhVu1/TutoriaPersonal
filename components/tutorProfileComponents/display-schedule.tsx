@@ -40,13 +40,12 @@ const DisplaySchedule = ({ user, availableTimes }: DisplayScheduleProps) => {
         </Button>
       </div>
       <Table>
-        <TableCaption>
-          {availableTimes.length === 0 ? (
-            <>There is no available times, try adding some</>
-          ) : (
-            <>A list of your available time (weekly)</>
-          )}
-        </TableCaption>
+        {availableTimes.length === 0 && (
+          <TableCaption>
+            There is no available times for you, try adding some
+          </TableCaption>
+        )}
+
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">Index</TableHead>
@@ -71,7 +70,7 @@ const DisplaySchedule = ({ user, availableTimes }: DisplayScheduleProps) => {
                     className="text-right cursor-pointer"
                     onClick={() =>
                       onOpen("deleteAvailableTime", {
-                        availableTime: availableTime
+                        availableTime: availableTime,
                       })
                     }
                   >
