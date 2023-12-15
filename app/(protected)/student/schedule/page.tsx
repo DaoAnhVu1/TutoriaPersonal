@@ -50,7 +50,7 @@ const StudentSchedule = async () => {
           </div>
         </div>
       </div>
-      <div className="min-h-[600px] flex flex-col items-center">
+      <div className="min-h-[300px] flex flex-col items-center">
         <div className="flex justify-center items-center mt-10 w-full px-10 md:w-3/5">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">

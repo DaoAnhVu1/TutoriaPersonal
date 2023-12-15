@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 const Footer = () => {
   return (
-    <div className="py-10 mt-20">
+    <div className="py-10 mt-10">
       <div className="flex h-5 items-center justify-center space-x-4 text-sm text-center">
         <div>Contact us</div>
         <Separator orientation="vertical" />

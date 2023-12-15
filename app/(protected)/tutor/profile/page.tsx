@@ -103,7 +103,7 @@ const TutorProfilePage = async () => {
           </div>
         </div>
 
-        <div className="description-container basis-3/4 min-h-[800px] w-full mt-16 md:mt-0  ml-0 md:ml-16 flex flex-col gap-3">
+        <div className="description-container basis-3/4 min-h-[800px] max-w-[75%] mt-16 md:mt-0  ml-0 md:ml-16 flex flex-col gap-3">
           <div className="flex items-center justify-between">
             <h2 className="font-semibold text-2xl">Description</h2>
             <EditDescriptionButton
@@ -114,7 +114,7 @@ const TutorProfilePage = async () => {
           <h3 className="w-full mb-5">{user?.description}</h3>
           <Separator />
           <h2 className="w-full font-semibold text-2xl mt-5">Qualification</h2>
-          <div className="qualification-container flex justify-center mb-5">
+          <div className="qualification-containe w-full flex justify-center mb-5">
             <DisplayQualification user={user} qualifications={qualifications} />
           </div>
           <Separator />

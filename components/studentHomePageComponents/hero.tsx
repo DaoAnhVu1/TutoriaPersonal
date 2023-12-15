@@ -15,7 +15,7 @@ interface HeroProps {
 export const Hero = ({ user }: HeroProps) => {
   const router = useRouter();
   return (
-    <div className="hero-container flex flex-col-reverse lg:flex-row py-12 px-10 gap-1 w-full min-h-[600px]">
+    <div className="hero-container flex flex-col-reverse lg:flex-row  px-10 gap-1 w-full min-h-[600px]">
       <motion.div
         className="flex-1 flex flex-col gap-1 justify-center pl-10"
         initial={{ opacity: 0, x: 100 }}
@@ -51,7 +51,7 @@ export const Hero = ({ user }: HeroProps) => {
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
-        <Lottie animationData={mainAnimation} className="lg:w-3/4 w-5/6" />
+        <Lottie animationData={mainAnimation} className="lg:w-full w-5/6" />
       </motion.div>
     </div>
   );

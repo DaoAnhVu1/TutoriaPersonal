@@ -33,7 +33,7 @@ const Header = ({ user }: HeaderProps) => {
       <div>
         {!!user && (
           <Avatar
-            className="cursor-pointer"
+            className="cursor-pointer w-12 h-12"
             onClick={() => onOpen("profile", { user })}
           >
             {/* @ts-ignore */}

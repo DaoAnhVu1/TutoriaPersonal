@@ -66,6 +66,8 @@ const AddQualificationModal = () => {
       qualificationDescription: values.qualificationDescription,
     });
     onClose();
+    setProgress(0);
+    setFile(undefined);
     form.reset();
     if (response.status === 200) {
       router.refresh();
