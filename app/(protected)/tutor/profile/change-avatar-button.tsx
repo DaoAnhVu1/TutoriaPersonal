@@ -11,7 +11,7 @@ const ChangeAvatarButton = ({ user }: ChangeAvatarButtonProps) => {
   const { onOpen } = useModal();
   return (
     <Button
-      className="w-full bg-green-600 mt-5"
+      className="w-full bg-green-600 mt-5 "
       onClick={() => onOpen("changeAvatar", { user })}
     >
       Change profile picture

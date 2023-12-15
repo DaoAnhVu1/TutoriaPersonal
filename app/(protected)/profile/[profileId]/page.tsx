@@ -14,6 +14,7 @@ import {
   TableCell,
   TableBody,
 } from "@/components/ui/table";
+import { Separator } from "@/components/ui/separator";
 
 interface ProfilePageProps {
   params: {
@@ -101,13 +102,16 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
                 className="rounded-full block object-cover"
               />
             </div>
-            <h2 className="font-semibold text-4xl text-center">{user?.name}</h2>
+            <h2 className="font-semibold text-4xl text-center ">
+              {user?.name}
+            </h2>
+            <Separator />
             <ScheduleButton
               tutorName={user.name}
               tutorId={user.id}
               availableTimes={availableTimes}
             />
-            <div className="flex gap-2 w-full items-center justify-start flex-wrap">
+            <div className="flex gap-2 w-full items-center justify-start flex-wrap mb-5">
               <span>Subjects: </span>
               {userSubjects.map((subject) => (
                 <Badge key={subject.subject.id} className="w-fit h-6">
@@ -115,45 +119,49 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
                 </Badge>
               ))}
             </div>
-            <div className="flex flex-col w-full mt-16">
+            <Separator />
+            <div className="flex flex-col w-full mt-5">
               <h2 className="w-full font-semibold text-2xl">Reviews: </h2>
-              {review.filter((reviewItem) => reviewItem.rating > 3).map((reviewItem) => (
-                <div
-                  className="flex flex-col mt-5 border-2 shadow-md rounded-md"
-                  key={reviewItem.id}
-                >
-                  <div className="ml-3 my-3">
-                    <div className="flex flex-row">
-                      <div className="mr-2">
-                        <Image
-                          src={reviewItem.sender.imageUrl}
-                          alt="user image"
-                          className="rounded-full object-cover"
-                          width={50}
-                          height={50}
-                        />
+              {review
+                .filter((reviewItem) => reviewItem.rating > 3)
+                .map((reviewItem) => (
+                  <div
+                    className="flex flex-col mt-5 border-2 shadow-md rounded-md"
+                    key={reviewItem.id}
+                  >
+                    <div className="ml-3 my-3">
+                      <div className="flex flex-row">
+                        <div className="mr-2">
+                          <Image
+                            src={reviewItem.sender.imageUrl}
+                            alt="user image"
+                            className="rounded-full object-cover"
+                            width={50}
+                            height={50}
+                          />
+                        </div>
+                        <div className="flex flex-col">
+                          <p className="font-semibold text-lg">
+                            {reviewItem.sender.name}
+                          </p>
+                          <StarRating rating={reviewItem.rating} />
+                        </div>
                       </div>
-                      <div className="flex flex-col">
-                        <p className="font-semibold text-lg">
-                          {reviewItem.sender.name}
-                        </p>
-                        <StarRating rating={reviewItem.rating} />
-                      </div>
+                      <p className="mt-3">{reviewItem.description}</p>
                     </div>
-                    <p className="mt-3">{reviewItem.description}</p>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
 
           <div className="description-container basis-3/4 min-h-[800px] w-full mt-16 md:mt-0  ml-0 md:ml-16 flex flex-col gap-3">
             <h2 className="w-full font-semibold text-2xl">Description</h2>
-            <h3 className="w-full ">{user?.description}</h3>
+            <h3 className="w-full mb-5">{user?.description}</h3>
+            <Separator />
             <h2 className="w-full font-semibold text-2xl mt-5">
               Qualification
             </h2>
-            <div className="qualification-container flex justify-center">
+            <div className="qualification-container flex justify-center mb-5">
               <ScrollArea className="w-full whitespace-nowrap rounded-md border">
                 <div className="flex w-max space-x-4 p-4">
                   {qualifications.map((qualification) => (
@@ -179,6 +187,7 @@ const ProfilePage = async ({ params }: ProfilePageProps) => {
                 <ScrollBar orientation="horizontal" />
               </ScrollArea>
             </div>
+            <Separator />
             <div className="schedule-container mt-5">
               <div className="flex justify-between">
                 <h2 className="font-semibold text-2xl ">Available time</h2>

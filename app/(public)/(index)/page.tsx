@@ -4,6 +4,7 @@ import SetApartDisplay from "@/components/homePageComponents/set-apart-display";
 import { currentUser } from "@/lib/current-user";
 import BestTeacherDisplay from "@/components/homePageComponents/best-teacher-display";
 import InfiniteScroll from "../../../components/homePageComponents/infinite-scoll";
+import { Separator } from "@/components/ui/separator";
 
 const HomePage = async () => {
   const current = await currentUser();
@@ -13,6 +14,10 @@ const HomePage = async () => {
       <CardsDisplay />
       <InfiniteScroll />
       <BestTeacherDisplay />
+      <div className="px-24">
+        <Separator />
+      </div>
+
       <SetApartDisplay />
     </div>
   );

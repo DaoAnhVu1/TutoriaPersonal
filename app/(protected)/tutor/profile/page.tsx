@@ -9,6 +9,7 @@ import DisplaySchedule from "@/components/tutorProfileComponents/display-schedul
 import ChangeAvatarButton from "./change-avatar-button";
 import DisplayEarnings from "@/components/tutorProfileComponents/display-earnings";
 import EditDescriptionButton from "./edit-description-button";
+import { Separator } from "@/components/ui/separator";
 
 const TutorProfilePage = async () => {
   const user = await currentUser();
@@ -81,9 +82,11 @@ const TutorProfilePage = async () => {
             />
           </div>
           <h2 className="font-semibold text-4xl text-center">{user?.name}</h2>
+          <div className="w-full">
+            <Separator />
+          </div>
           <ChangeAvatarButton user={user} />
-
-          <div className="flex gap-2 w-full items-center justify-start flex-wrap">
+          <div className="flex gap-2 w-full items-center justify-start flex-wrap mb-5">
             <span>Subjects: </span>
             <DisplaySubject
               subjects={subjects}
@@ -91,8 +94,10 @@ const TutorProfilePage = async () => {
               allSubjects={allSubjects}
             />
           </div>
-
-          <div className="flex flex-col w-full mt-16">
+          <div className="w-full">
+            <Separator />
+          </div>
+          <div className="flex flex-col w-full mt-5">
             <h2 className="w-full font-semibold text-2xl">Reviews: </h2>
             <DisplayReview review={review} />
           </div>
@@ -106,15 +111,18 @@ const TutorProfilePage = async () => {
               userId={user?.id}
             />
           </div>
-          <h3 className="w-full">{user?.description}</h3>
+          <h3 className="w-full mb-5">{user?.description}</h3>
+          <Separator />
           <h2 className="w-full font-semibold text-2xl mt-5">Qualification</h2>
-          <div className="qualification-container flex justify-center">
+          <div className="qualification-container flex justify-center mb-5">
             <DisplayQualification user={user} qualifications={qualifications} />
           </div>
-          <div className="schedule-container mt-5">
+          <Separator />
+          <div className="schedule-container my-5">
             <DisplaySchedule availableTimes={availableTimes} user={user} />
           </div>
-          <div className="flex flex-col w-full mt-4 mb-3">
+          <Separator />
+          <div className="flex flex-col w-full my-5">
             <h2 className="w-full font-semibold text-2xl mb-3">
               Your earnings:{" "}
             </h2>

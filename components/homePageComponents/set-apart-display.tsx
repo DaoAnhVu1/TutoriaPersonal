@@ -9,10 +9,10 @@ const SetApartDisplay = () => {
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 1 }}
       viewport={{ once: true }}
-      className="why-container w-full flex flex-col-reverse md:flex-row  px-0 md:px-24 mb-8"
+      className="why-container w-full flex flex-col-reverse md:flex-row  px-0 md:px-24 my-24"
     >
       <div className="flex-1 flex items-center justify-center">
-        <Lottie animationData={animation} />
+        <Lottie animationData={animation} className="h-[28rem] w-[28rem]" />
       </div>
       <div className="flex-1 flex justify-center  flex-col ">
         <p className="font-bold text-4xl text-center">What sets us apart?</p>
