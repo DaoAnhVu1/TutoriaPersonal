@@ -31,7 +31,7 @@ const DisplaySchedule = ({ user, availableTimes }: DisplayScheduleProps) => {
   return (
     <>
       <div className="flex justify-between">
-        <h2 className="font-semibold text-2xl ">Your available time</h2>
+        <h2 className="font-semibold text-2xl ">Your available time: </h2>
         <Button
           className="bg-green-600"
           onClick={() => onOpen("addAvailableTime", { user })}
@@ -40,13 +40,12 @@ const DisplaySchedule = ({ user, availableTimes }: DisplayScheduleProps) => {
         </Button>
       </div>
       <Table>
-        <TableCaption>
-          {availableTimes.length === 0 ? (
-            <>There is no available times, try adding some</>
-          ) : (
-            <>A list of your available time (weekly)</>
-          )}
-        </TableCaption>
+        {availableTimes.length === 0 && (
+          <TableCaption>
+            There is no available times for you, try adding some
+          </TableCaption>
+        )}
+
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">Index</TableHead>
@@ -67,7 +66,14 @@ const DisplaySchedule = ({ user, availableTimes }: DisplayScheduleProps) => {
                   <TableCell>{availableTime.endTime}</TableCell>
                   {/* @ts-ignore */}
                   <TableCell>{daysOfWeekMap[availableTime.weekDay]}</TableCell>
-                  <TableCell className="text-right">
+                  <TableCell
+                    className="text-right cursor-pointer"
+                    onClick={() =>
+                      onOpen("deleteAvailableTime", {
+                        availableTime: availableTime,
+                      })
+                    }
+                  >
                     <Trash />
                   </TableCell>
                 </TableRow>

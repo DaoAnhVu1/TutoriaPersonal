@@ -17,7 +17,7 @@ const ScheduleButton = ({
   const tutorInfo = { tutorName, availableTimes, tutorId };
   return (
     <Button
-      className="w-full bg-green-600 text-lg"
+      className="w-full bg-green-600 text-lg mt-5"
       onClick={() => onOpen("schedule", { tutorInfo: tutorInfo })}
     >
       Schedule this tutor

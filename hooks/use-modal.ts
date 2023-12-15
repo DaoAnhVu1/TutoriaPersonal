@@ -1,4 +1,4 @@
-import { Subject, User } from "@prisma/client";
+import { AvailableTime, Qualification, Subject, User } from "@prisma/client";
 import { create } from "zustand";
 
 export type ModalType =
@@ -8,12 +8,25 @@ export type ModalType =
   | "addQualification"
   | "addAvailableTime"
   | "schedule"
-  | "changeAvatar";
+  | "changeAvatar"
+  | "deleteSubject"
+  | "editQualification"
+  | "editDescription"
+  | "deleteAvailableTime"
+  | "review";
 
 interface ModalData {
   user?: User | null;
   allSubjects?: Subject[];
   tutorInfo?: any;
+  subjectToDelete?: any;
+  qualification?: Qualification;
+  availableTime?: AvailableTime;
+  senderId?: string;
+  receiverId?: string;
+  sessionId?: string;
+  description?: string | undefined | null;
+  userId?: string | undefined | null;
 }
 
 interface ModalStore {

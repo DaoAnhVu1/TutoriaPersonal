@@ -15,7 +15,7 @@ const Hero = ({ user }: HeroProps) => {
   const { onOpen } = useModal();
   const router = useRouter();
   return (
-    <div className="hero-container flex flex-col-reverse lg:flex-row py-12 px-10 gap-1">
+    <div className="hero-container flex flex-col-reverse lg:flex-row py-12 px-0 md:px-24 gap-1">
       <motion.div
         className="flex-1 flex flex-col gap-1 justify-center pl-10"
         initial={{ opacity: 0, x: 100 }}
