@@ -27,27 +27,35 @@ const DisplayReview = ({ review }: DisplayReviewProps) => {
         <></>
       ) : (
         <>
-          {review.filter((reviewItem) => reviewItem.rating > 3).map((reviewItem) => (
-            <div
-              className="flex flex-col mt-5 border-2 shadow-md rounded-md"
-              key={reviewItem.id}
-            >
-              <div className="ml-3 my-3">
-                <div className="flex flex-row">
-                  <div className="mr-2">
-                      <Image src={reviewItem.sender.imageUrl} alt="user image" className="rounded-full object-cover" width={50} height={50}/>
+          {review
+            .filter((reviewItem) => reviewItem.rating > 3)
+            .map((reviewItem) => (
+              <div
+                className="flex flex-col mt-5 border-2 shadow-md rounded-md p-3"
+                key={reviewItem.id}
+              >
+                <div className="ml-3 my-3">
+                  <div className="flex flex-row">
+                    <div className="mr-5">
+                      <Image
+                        src={reviewItem.sender.imageUrl}
+                        alt="user image"
+                        className="rounded-full object-cover"
+                        width={50}
+                        height={50}
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <p className="font-semibold text-lg">
+                        {reviewItem.sender.name}
+                      </p>
+                      <StarRating rating={reviewItem.rating} />
+                    </div>
                   </div>
-                  <div className="flex flex-col">
-                    <p className="font-semibold text-lg">
-                      {reviewItem.sender.name}
-                    </p>
-                    <StarRating rating={reviewItem.rating} />
-                  </div>
+                  <p className="mt-3">{reviewItem.description}</p>
                 </div>
-                <p className="mt-3">{reviewItem.description}</p>
               </div>
-            </div>
-          ))}
+            ))}
         </>
       )}
     </>

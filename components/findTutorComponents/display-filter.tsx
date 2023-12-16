@@ -11,6 +11,7 @@ interface DisplayFilterProps {
   setValidSubjects: (selectedSubjects: Subject[]) => void;
   searchTerm: string;
   setSearchTerm: (searchTerms: string) => void;
+  setPage: (number: number) => void;
 }
 
 const DisplayFilter = ({
@@ -19,6 +20,7 @@ const DisplayFilter = ({
   setValidSubjects,
   searchTerm,
   setSearchTerm,
+  setPage,
 }: DisplayFilterProps) => {
   return (
     <>
@@ -54,6 +56,7 @@ const DisplayFilter = ({
                     (currentSubject) => currentSubject.id !== subject.id
                   );
                 }
+                setPage(1);
                 setValidSubjects(newSubjectArray);
               }}
             />

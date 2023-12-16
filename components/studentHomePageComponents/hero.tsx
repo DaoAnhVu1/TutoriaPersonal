@@ -51,7 +51,7 @@ export const Hero = ({ user }: HeroProps) => {
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
-        <Lottie animationData={mainAnimation} className="lg:w-full w-5/6" />
+        <Lottie animationData={mainAnimation} className="w-11/12" />
       </motion.div>
     </div>
   );

@@ -37,7 +37,7 @@ const TutorSchedule = async () => {
     <>
       <div
         style={{ backgroundImage: `url(${onlineLearning.src})` }}
-        className="bg-cover bg-no-repeat bg-center bg-blend-multiply bg-fixed bg-neutral-400 h-[500px]"
+        className="bg-cover bg-no-repeat bg-center bg-blend-multiply bg-fixed bg-neutral-400 h-[300px]"
       >
         <div className="w-full h-full flex justify-center items-center">
           <div className="text-white m-auto text-center">

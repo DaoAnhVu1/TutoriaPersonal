@@ -72,6 +72,7 @@ const DisplayFindTutor = ({ allSubjects }: DisplayFindTutorProps) => {
             <DisplayFilter
               subjects={allSubjects}
               validSubjects={validSubjects}
+              setPage={setPageNumber}
               setValidSubjects={setValidSubjects}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}

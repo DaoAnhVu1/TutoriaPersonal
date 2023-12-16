@@ -5,7 +5,6 @@ import AuthProvider from "@/components/providers/auth-provider";
 import ModalProvider from "@/components/providers/modal-provider";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,6 +19,9 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="./online-learning.png" />
+      </head>
       <AuthProvider>
         <EdgeStoreProvider>
           <ModalProvider />
