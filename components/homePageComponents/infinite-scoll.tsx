@@ -24,7 +24,7 @@ const InfiniteScroll = () => {
               <span
                 key={subjectIndex}
                 className={`overflow-hidden text-2xl px-5 font-semibold uppercase ${
-                  subjectIndex % 2 === 0 ? "text-green-600" : ""
+                  subjectIndex % 2 === 0 ? "text-green-600" : "text-[#12544f]"
                 }`}
               >
                 {subject}
