@@ -19,11 +19,11 @@ const SetApartDisplay = () => {
         <div className="flex-1 h-[500px] relative flex items-center justify-center">
           <Image fill src={learn.src} className="object-cover" alt="alo" />
         </div>
-        <div className="flex-1 flex flex-col pl-10 pt-10 pr-5 text-white">
+        <div className="flex-1 flex flex-col pl-10 my-auto py-10 pr-5 text-white">
           <h2 className={`${kalam.className} text-5xl font-semibold`}>
             What set us apart?
           </h2>
-          <p className={`${kalam.className} text-xl mt-10`}>
+          <p className={`${kalam.className} text-xl mt-5`}>
             At{" "}
             <span className="text-green-600 uppercase font-semibold">
               Tutoria
