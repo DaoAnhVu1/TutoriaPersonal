@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/providers/auth-provider";
 import ModalProvider from "@/components/providers/modal-provider";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Open_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Tutoria",

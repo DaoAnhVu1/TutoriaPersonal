@@ -40,14 +40,14 @@ const CardsDisplay = () => {
         {cardData.map((card, index) => (
           <motion.div
             key={index}
-            className="w-4/5 md:w-1/4 shadow-md rounded-lg overflow-hidden"
+            className="w-4/5 md:w-1/4 shadow-lg rounded-lg overflow-hidden"
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: index * 0.25 }}
             viewport={{ once: true }}
           >
             <Card
-              className="h-72 flex flex-col justify-center transition bg-cover"
+              className="h-72 flex flex-col justify-center transition bg-cover text-white"
               style={{ backgroundImage: `url(${card.image})` }}
             >
               <CardContent className="w-full h-full flex flex-col justify-center bg-black bg-opacity-50">

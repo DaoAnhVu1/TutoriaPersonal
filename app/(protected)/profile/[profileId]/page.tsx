@@ -3,7 +3,6 @@ import { db } from "@/lib/db";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { currentUser } from "@/lib/current-user";
-import { Button } from "@/components/ui/button";
 import { FaStar } from "react-icons/fa";
 import ScheduleButton from "./schedule-button";
 import {

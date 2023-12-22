@@ -52,8 +52,8 @@ const DisplayFindTutor = ({ allSubjects }: DisplayFindTutorProps) => {
       >
         <div className="w-full h-full flex justify-center items-center">
           <div className="text-white m-auto text-center">
-            <h1 className="text-5xl lg:text-9xl inter.className">
-              <div className="mx-auto relative w-fit block after:block font-semibold after:content-[''] after:absolute after:h-[5px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-500 after:origin-center">
+            <h1 className="text-5xl lg:text-8xl">
+              <div className="mx-auto relative w-fit uppercase block after:block font-semibold after:content-[''] after:absolute after:h-[5px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-500 after:origin-center">
                 Find your tutor
               </div>
             </h1>

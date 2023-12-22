@@ -1,7 +1,6 @@
 import LiveCall from "@/components/live-call";
 import { currentUser } from "@/lib/current-user";
 import { redirect } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import BackButton from "./back-button";
 import { db } from "@/lib/db";
 
@@ -33,7 +32,7 @@ const LearningSession = async ({ params }: LearningSessionProps) => {
         <div className="bg-black">
           <BackButton />
         </div>
-        <LiveCall sessionId={params.sessionId} username={user?.name} />
+        <LiveCall sessionId={params.sessionId} username={user?.name}/>
       </div>
     </>
   );
