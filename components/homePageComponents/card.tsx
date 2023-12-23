@@ -31,7 +31,7 @@ const HomePageCard = ({ card, index, message }: CardProps) => {
         onClick={onFlip}
         className="h-72 flex flex-col justify-center hover:scale-105 transition"
       >
-        <CardContent className="w-full h-full flex flex-col justify-center bg-emerald-900">
+        <CardContent className="w-full h-full flex flex-col justify-center bg-[#12544f]">
           <CardTitle className="text-center text-xl text-white uppercase">
             {message}
           </CardTitle>
