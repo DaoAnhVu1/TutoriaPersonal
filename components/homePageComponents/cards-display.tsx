@@ -6,27 +6,35 @@ import subject from "@/public/subject.jpeg";
 import tutor from "@/public/tutor-card.jpeg";
 import schedule from "@/public/schedule.jpeg";
 import learn from "@/public/start_learn.jpeg";
-
+import HomePageCard from "./card";
 const cardData = [
   {
     title: "Choose a subject",
     icon: <BookA className="w-32 h-32" />,
     image: subject.src,
+    message:
+      "Select the topic you want to learn and explore available courses.",
   },
   {
     title: "Choose a tutor",
     icon: <GraduationCap className="w-32 h-32" />,
     image: tutor.src,
+    message:
+      "Pick a knowledgeable tutor to guide you through the learning process.",
   },
   {
     title: "Scheduling",
     icon: <CalendarCheck className="w-32 h-32" />,
     image: schedule.src,
+    message:
+      "Set up a convenient schedule for your lessons and study sessions.",
   },
   {
     title: "Start learning",
     icon: <Users className="w-32 h-32" />,
     image: learn.src,
+    message:
+      "Begin your learning journey and gain valuable knowledge and skills.",
   },
 ];
 
@@ -40,22 +48,13 @@ const CardsDisplay = () => {
         {cardData.map((card, index) => (
           <motion.div
             key={index}
-            className="w-4/5 md:w-1/4 shadow-lg rounded-lg overflow-hidden"
+            className="w-4/5 md:w-1/4 shadow-lg rounded-lg"
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: index * 0.25 }}
             viewport={{ once: true }}
           >
-            <Card
-              className="h-72 flex flex-col justify-center transition bg-cover text-white"
-              style={{ backgroundImage: `url(${card.image})` }}
-            >
-              <CardContent className="w-full h-full flex flex-col justify-center bg-black bg-opacity-50">
-                <CardTitle className="text-center text-xl text-white uppercase">{`${
-                  index + 1
-                }. ${card.title}`}</CardTitle>
-              </CardContent>
-            </Card>
+            <HomePageCard card={card} index={index} message={card.message} />
           </motion.div>
         ))}
       </div>
