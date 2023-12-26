@@ -17,9 +17,11 @@ const SetApartDisplay = () => {
         <div className="flex-1 min-h-[500px] relative items-center justify-center  hidden md:flex">
           <Image fill src={learn.src} className="object-cover" alt="alo" />
         </div>
-        <div className="flex-1 flex flex-col pl-10 my-auto py-10 pr-5 text-white">
-          <h2 className={` text-5xl font-semibold`}>What set us apart?</h2>
-          <p className={` text-xl mt-5`}>
+        <div className="flex-1 flex flex-col my-auto py-10 text-white px-5">
+          <h2 className="text-5xl font-semibold text-center">
+            What set us apart?
+          </h2>
+          <p className="text-xl mt-5 text-center md:text-start">
             At{" "}
             <span className="text-green-600 uppercase font-semibold">
               Tutoria

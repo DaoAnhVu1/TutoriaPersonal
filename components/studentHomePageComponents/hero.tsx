@@ -31,7 +31,7 @@ export const Hero = ({ user }: HeroProps) => {
         <p className="mt-5 text-md text-center lg:text-left">
           Make learning an engaging and rewarding experience!
         </p>
-        <div className="flex flex-col lg:gap-5 lg:flex-row gap-0 w-full">
+        <div className="flex flex-row gap-5 justify-center w-full md:justify-start md:gap-3">
           <Link href={"/student/findtutor"}>
             <Button className="rounded-full bg-black w-28 mt-5 cursor-pointer text-white font-semibold">
               Find Tutor
@@ -51,7 +51,10 @@ export const Hero = ({ user }: HeroProps) => {
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
-        <Lottie animationData={mainAnimation} className="md:w-11/12 w-[310px]" />
+        <Lottie
+          animationData={mainAnimation}
+          className="md:w-11/12 w-[310px]"
+        />
       </motion.div>
     </div>
   );
