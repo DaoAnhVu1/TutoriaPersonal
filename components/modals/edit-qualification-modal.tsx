@@ -49,7 +49,6 @@ const EditQualificationModal = () => {
         </div>
 
         <DialogFooter>
-          <Button variant={"default"}>Edit</Button>
           <Button
             variant={"destructive"}
             onClick={() => {

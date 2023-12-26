@@ -12,7 +12,7 @@ interface HeaderProps {
 const Header = ({ user }: HeaderProps) => {
   const { onOpen } = useModal();
   return (
-    <header className="h-20 flex justify-between p-5 px-24">
+    <header className="h-20 flex justify-between p-5 md:px-24 px-5">
       <div>
         {!!user && user.role === "STUDENT" && (
           <Link href={"/student"}>

@@ -55,7 +55,7 @@ const BestTeacherDisplay = () => {
       <h2 className="text-center text-black text-4xl font-bold mb-20 mt-10">
         Our best tutors
       </h2>
-      <div className="w-full flex flex-col md:flex-row items-center gap-10 pr-15 pl-6 justify-center mb-24">
+      <div className="w-full flex flex-col md:flex-row items-center gap-10 justify-center mb-24">
         {cardData.map((card, index) => (
           <motion.div
             key={index}
