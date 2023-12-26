@@ -11,7 +11,7 @@ const SetApartDisplay = () => {
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 1 }}
       viewport={{ once: true }}
-      className="why-container w-full flex flex-col-reverse md:flex-row px-0 md:px-24 mt-24"
+      className="why-container md:w-full flex flex-col-reverse md:flex-row md:mx-0 px-0 w-5/6 mx-auto md:px-24 mt-24"
     >
       <div className="w-full flex flex-col-reverse md:flex-row shadow-2xl rounded-md overflow-hidden bg-[#12544f]">
         <div className="flex-1 min-h-[500px] relative items-center justify-center  hidden md:flex">
