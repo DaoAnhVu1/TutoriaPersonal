@@ -15,9 +15,9 @@ interface HeroProps {
 export const Hero = ({ user }: HeroProps) => {
   const router = useRouter();
   return (
-    <div className="hero-container flex flex-col-reverse lg:flex-row  px-10 gap-1 w-full min-h-[600px]">
+    <div className="hero-container flex flex-col-reverse lg:flex-row px-10 gap-1 w-full min-h-[600px]">
       <motion.div
-        className="flex-1 flex flex-col gap-1 justify-center pl-10"
+        className="flex-1 flex flex-col gap-1 justify-center"
         initial={{ opacity: 0, x: 100 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}
@@ -33,12 +33,12 @@ export const Hero = ({ user }: HeroProps) => {
         </p>
         <div className="flex flex-col lg:gap-5 lg:flex-row gap-0 w-full">
           <Link href={"/student/findtutor"}>
-            <Button className="rounded-full bg-black lg:w-28 mt-5 cursor-pointer text-white font-semibold">
+            <Button className="rounded-full bg-black w-28 mt-5 cursor-pointer text-white font-semibold">
               Find Tutor
             </Button>
           </Link>
           <Link href={"/student/schedule"}>
-            <Button className="rounded-full bg-green-600 lg:w-28 mt-5 cursor-pointer font-semibold hover:bg-green-500">
+            <Button className="rounded-full bg-green-600 w-28 mt-5 cursor-pointer font-semibold hover:bg-green-500">
               My Schedule
             </Button>
           </Link>
@@ -51,7 +51,7 @@ export const Hero = ({ user }: HeroProps) => {
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
-        <Lottie animationData={mainAnimation} className="w-11/12" />
+        <Lottie animationData={mainAnimation} className="md:w-11/12 w-[310px]" />
       </motion.div>
     </div>
   );
