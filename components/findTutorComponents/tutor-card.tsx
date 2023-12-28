@@ -28,7 +28,7 @@ const TutorCard = ({ tutorInfo }: TutorCardProps) => {
               </p>
             </div>
           </div>
-          <div>
+          <div className="hidden md:block">
             <Link href={`/profile/${tutorInfo.id}`}>
               <Badge className="text-lg cursor-pointer bg-green-600">
                 Visit profile
@@ -51,6 +51,13 @@ const TutorCard = ({ tutorInfo }: TutorCardProps) => {
           </div>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
+        <div className="md:hidden mt-7 flex justify-center">
+          <Link href={`/profile/${tutorInfo.id}`}>
+            <Badge className="text-lg cursor-pointer bg-green-600 h-[40px]">
+              Visit profile
+            </Badge>
+          </Link>
+        </div>
       </CardContent>
     </Card>
   );
