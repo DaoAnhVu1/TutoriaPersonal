@@ -19,7 +19,7 @@ const StudentInProgressButton = ({
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   return (
-    <div className="w-full">
+    <div className="w-[147.06px] md:w-full">
       <HoverCard>
         <HoverCardTrigger>
           <Button

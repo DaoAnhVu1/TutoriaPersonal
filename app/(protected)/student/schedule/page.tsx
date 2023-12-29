@@ -65,7 +65,7 @@ const StudentSchedule = async () => {
                   processingSessions.map((session) => (
                     <Card key={session.id} className="mb-5">
                       <CardContent className="flex flex-col md:flex-row justify-between p-5">
-                        <div className="flex flex-col items-center md:items-start justify-center">
+                        <div className="flex flex-col md:items-start justify-center">
                           <p>
                             <span className="font-semibold">Session Id:</span>{" "}
                             {session.id}
@@ -103,7 +103,7 @@ const StudentSchedule = async () => {
                   inProgressSessions.map((session) => (
                     <Card key={session.id} className="mb-5">
                       <CardContent className="flex flex-col md:flex-row justify-between p-5">
-                        <div className="flex flex-col items-center md:items-start justify-center">
+                        <div className="flex flex-col md:items-start justify-center">
                           <p>
                             <span className="font-semibold">Session Id:</span>{" "}
                             {session.id}
@@ -123,7 +123,7 @@ const StudentSchedule = async () => {
                         </div>
                         <div className="h-full flex gap-3 flex-col items-center mt-5 ">
                           <Link href={`/learningsession/${session.id}`}>
-                            <Button className="bg-green-600 w-1/2 md:w-full">
+                            <Button className="bg-green-600 md:w-full">
                               <Video className="mr-2" /> Join meeting
                             </Button>
                           </Link>
@@ -149,7 +149,7 @@ const StudentSchedule = async () => {
                   completedSessions.map((session) => (
                     <Card key={session.id} className="mb-5">
                       <CardContent className="flex flex-col md:flex-row justify-between p-5">
-                        <div className="flex flex-col items-center md:items-start justify-center">
+                        <div className="flex flex-col md:items-start justify-center">
                           <p>
                             <span className="font-semibold">Session Id:</span>{" "}
                             {session.id}
