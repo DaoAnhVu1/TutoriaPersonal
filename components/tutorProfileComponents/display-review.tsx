@@ -24,7 +24,9 @@ const DisplayReview = ({ review }: DisplayReviewProps) => {
   return (
     <>
       {review.length === 0 ? (
-        <></>
+        <>
+        <div className="mt-7">No reviews yet</div>
+        </>
       ) : (
         <>
           {review

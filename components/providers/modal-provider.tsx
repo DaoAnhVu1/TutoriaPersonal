@@ -12,6 +12,7 @@ import EditQualificationModal from "../modals/edit-qualification-modal";
 import DeleteAvailableTimeModal from "../modals/delete-available-time-modal";
 import ReviewModal from "../modals/review-modal";
 import EditDescriptionModal from "../modals/edit-description-modal";
+import EditNameModal from "../modals/edit-name-modal";
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -36,6 +37,7 @@ const ModalProvider = () => {
       <EditDescriptionModal />
       <DeleteAvailableTimeModal />
       <ReviewModal />
+      <EditNameModal />
     </>
   );
 };
