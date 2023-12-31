@@ -81,13 +81,19 @@ const AddAvailableTimeModal = () => {
       alert("Start time must be smaller than end time");
       return;
     }
-    const response = await axios.post(
-      `/api/availabletimes`,
-      {
+    try {
+      const response = await axios.post(`/api/availabletimes`, {
         ...values,
         userId: user?.id,
+      });
+      onClose();
+      form.reset();
+      router.refresh();
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        alert(`${error.response?.data}`);
       }
-    );
+    }
     onClose();
     form.reset();
     router.refresh();

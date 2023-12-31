@@ -28,6 +28,7 @@ const EditDescriptionModal = () => {
   };
 
   useEffect(() => {
+
     if (data.description) {
       setNewDescription(data.description);
     }
@@ -35,6 +36,7 @@ const EditDescriptionModal = () => {
 
   const handleUpdateDescription = async () => {
     try {
+      
       setLoading(true);
       await axios.patch(
         `/api/tutors?description=${newDescription}&userId=${data.userId}`

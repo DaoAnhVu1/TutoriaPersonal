@@ -10,6 +10,7 @@ import ChangeAvatarButton from "./change-avatar-button";
 import DisplayEarnings from "@/components/tutorProfileComponents/display-earnings";
 import EditDescriptionButton from "./edit-description-button";
 import { Separator } from "@/components/ui/separator";
+import EditNameButton from "./edit-name-button";
 
 const TutorProfilePage = async () => {
   const user = await currentUser();
@@ -85,7 +86,9 @@ const TutorProfilePage = async () => {
           <div className="w-full">
             <Separator />
           </div>
+          <EditNameButton name={user?.name} userId={user?.id} />
           <ChangeAvatarButton user={user} />
+          
           <div className="flex gap-2 w-full items-center justify-start flex-wrap mb-5">
             <span>Subjects: </span>
             <DisplaySubject
