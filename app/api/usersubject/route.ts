@@ -21,16 +21,30 @@ export async function DELETE(req: Request) {
     const { searchParams } = new URL(req.url);
     const subjectId = searchParams.get("subjectId")!;
     const userId = searchParams.get("userId")!;
-    await db.usersSubjects.delete({
+
+    // Find the UsersSubjects record based on subjectId and userId
+    const usersSubjectsRecord = await db.usersSubjects.findFirst({
       where: {
-        userId_subjectId: {
-          subjectId: subjectId,
-          userId: userId,
-        },
+        subjectId: subjectId,
+        userId: userId,
       },
     });
 
-    return NextResponse.json({}, { status: 200 });
+    if (!usersSubjectsRecord) {
+      // Handle the case where the record is not found
+      return new NextResponse("Record not found", { status: 404 });
+    }
+
+    const usersSubjectsId = usersSubjectsRecord.id;
+
+    // Delete the UsersSubjects record using its id
+    await db.usersSubjects.delete({
+      where: {
+        id: usersSubjectsId,
+      },
+    });
+
+    return new NextResponse("Success", { status: 200 });
   } catch (error) {
     console.log("[USERSUBJECT ERROR]", error);
     return new NextResponse("Internal Error", { status: 500 });
