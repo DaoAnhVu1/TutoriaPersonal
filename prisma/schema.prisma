@@ -1,5 +1,5 @@
 datasource db {
-  provider     = "mysql"
+  provider     = "mongodb"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
@@ -14,11 +14,11 @@ enum Role {
 }
 
 model User {
-  id                        String            @id
+  id                        String            @id @map("_id")
   name                      String
-  imageUrl                  String            @db.Text
-  email                     String            @db.Text
-  description               String?           @db.Text
+  imageUrl                  String
+  email                     String
+  description               String?
   role                      Role?
   costPerHour               Float?
   qualifications            Qualification[]
@@ -31,9 +31,9 @@ model User {
 }
 
 model Qualification {
-  id                 String @id @default(uuid())
+  id                 String @id @default(uuid()) @map("_id")
   qualification_name String
-  description        String @db.LongText
+  description        String
   imageUrl           String
 
   userId String
@@ -43,24 +43,24 @@ model Qualification {
 }
 
 model Subject {
-  id    String          @id @default(uuid())
+  id    String          @id @default(uuid()) @map("_id")
   name  String
   users UsersSubjects[]
 }
 
 model UsersSubjects {
+  id        String  @id @default(uuid()) @map("_id")
   userId    String
   subjectId String
   user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   subject   Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
 
-  @@id([userId, subjectId])
   @@index([userId])
   @@index([subjectId])
 }
 
 model AvailableTime {
-  id        String @id @default(uuid())
+  id        String @id @default(uuid()) @map("_id")
   weekDay   Int
   startTime String
   endTime   String
@@ -78,7 +78,7 @@ enum SessionStatus {
 }
 
 model LearningSession {
-  id            String        @id @default(uuid())
+  id            String        @id @default(uuid()) @map("_id")
   tutorId       String
   tutor         User          @relation("LearningSessionTutor", fields: [tutorId], references: [id])
   studentId     String
@@ -92,7 +92,7 @@ model LearningSession {
 }
 
 model Review {
-  id          String   @id @default(uuid())
+  id          String   @id @default(uuid()) @map("_id")
   receiverId  String
   receiver    User     @relation("ReviewReceiver", fields: [receiverId], references: [id])
   senderId    String
